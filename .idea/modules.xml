@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file:///media/albino/Data/Workspace/2.PERSONAL/blast/.idea/pyg.iml" filepath="/media/albino/Data/Workspace/2.PERSONAL/blast/.idea/pyg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/blast.iml" filepath="$PROJECT_DIR$/.idea/blast.iml" />
     </modules>
   </component>
 </project>
