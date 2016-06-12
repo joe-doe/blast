@@ -3,7 +3,7 @@ from level import Level
 from sprites.battleship import Battleship
 from sprites.asteroids.asteroid_alpha import AsteroidAlpha
 from sprites.bullet import Bullet
-from background import Background
+from sprites.background import Background
 
 
 class Level01(Level):
