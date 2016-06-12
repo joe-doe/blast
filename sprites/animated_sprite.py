@@ -22,7 +22,7 @@ class AnimatedSprite(Sprite):
         pass
 
     def setup(self):
-        path = self.image_set_folder+'/1.png'
+        path = self.image_set_folder+'/01.png'
         self.image = pygame.image.load(path).convert_alpha()
         self.rect = self.image.get_rect()
 
@@ -32,9 +32,11 @@ class AnimatedSprite(Sprite):
         pass
 
     def load_image_set(self):
-        images = [join(self.image_set_folder, f) for f in listdir(self.image_set_folder) if isfile(join(self.image_set_folder, f))]
-        for img in images:
-            self.image_set.append(pygame.image.load(img).convert_alpha())
+        image_files = [f for f in listdir(self.image_set_folder) if isfile(join(self.image_set_folder, f))]
+        image_files.sort()
+        for img in image_files:
+            image = join(self.image_set_folder, img)
+            self.image_set.append(pygame.image.load(image).convert_alpha())
 
     def load_next_image(self ):
         try:
