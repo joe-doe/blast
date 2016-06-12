@@ -1,7 +1,7 @@
 import time
 from level import Level
 from sprites.battleship import Battleship
-from sprites.asteroid_alpha import AsteroidAlpha
+from sprites.asteroids.asteroid_alpha import AsteroidAlpha
 from sprites.bullet import Bullet
 from background import Background
 
@@ -12,7 +12,7 @@ class Level01(Level):
         print "LEVEL 01 STARTED"
 
     def initialize_background(self):
-        image = 'recources/L1_background_800x600.png'
+        image = 'resources/L1_background_800x600.png'
         speed = 1
         self.background.add(Background(image, speed))
 

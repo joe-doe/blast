@@ -8,7 +8,7 @@ class Battleship(Sprite):
     def __init__(self):
         super(Battleship, self).__init__()
 
-        self.image = pygame.image.load('recources/spaceship/'
+        self.image = pygame.image.load('resources/spaceship/'
                                        'spaceship_1.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = WINDOW_WIDTH/2 - self.rect.w/2

@@ -11,7 +11,7 @@ class Bullet(Sprite):
     def __init__(self, spaceship_pos):
         super(Bullet, self).__init__()
 
-        self.image = pygame.image.load('recources/'
+        self.image = pygame.image.load('resources/'
                                        'spaceship/bullet.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = spaceship_pos.x
