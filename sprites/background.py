@@ -15,5 +15,4 @@ class Background(pygame.sprite.Sprite):
         self.speed = speed
 
     def update(self):
-        # pass
         self.rect.y += self.speed

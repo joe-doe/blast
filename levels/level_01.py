@@ -26,6 +26,8 @@ class Level01(Level):
         self.friend_bullets.add(Bullet(battleship_rect))
 
     def run(self):
-        while True:
-            time.sleep(3)
-            self.enemy_sprites.add(AsteroidAlpha())
+        self.enemy_sprites.add(AsteroidAlpha())
+
+        # while True:
+        #     time.sleep(1)
+        #     self.enemy_sprites.add(AsteroidAlpha())

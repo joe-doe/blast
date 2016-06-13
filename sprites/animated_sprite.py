@@ -8,8 +8,9 @@ from os.path import isfile, join
 class AnimatedSprite(Sprite):
 
     image_set = []
+    image_set_length = 0
     image_set_folder = None
-    current_image_idx = 1
+    current_image_idx = 0
     should_explode = False
 
     def __init__(self):
@@ -32,18 +33,23 @@ class AnimatedSprite(Sprite):
         pass
 
     def load_image_set(self):
-        image_files = [f for f in listdir(self.image_set_folder) if isfile(join(self.image_set_folder, f))]
+        image_files = [f for f in listdir(self.image_set_folder)
+                       if isfile(join(self.image_set_folder, f))]
         image_files.sort()
+        self.image_set_length = len(image_files)
+        print self.image_set_length
         for img in image_files:
             image = join(self.image_set_folder, img)
             self.image_set.append(pygame.image.load(image).convert_alpha())
 
-    def load_next_image(self ):
-        try:
-            self.current_image_idx += 1
-            self.image = self.image_set[self.current_image_idx]
-        except IndexError:
+    def load_next_image(self):
+        print self.current_image_idx
+        self.image = self.image_set[self.current_image_idx]
+
+        if self.current_image_idx == self.image_set_length-1:
             self.current_image_idx = 0
+        else:
+            self.current_image_idx += 1
 
     def bounce(self):
         if self.rect.x <= 0:

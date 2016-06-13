@@ -1,12 +1,11 @@
-import pygame
+import sys
+import os
 from random import (
     randint,
     uniform
 )
 from constants import *
 from ..animated_sprite import AnimatedSprite
-import sys
-import os
 
 
 class AsteroidAlpha(AnimatedSprite):
@@ -17,7 +16,8 @@ class AsteroidAlpha(AnimatedSprite):
         self.auto_start()
 
     def set_image_set_folder(self):
-        self.image_set_folder = os.path.join(sys.path[0], 'resources/asteroids/a_1')
+        self.image_set_folder = os.path.join(sys.path[0],
+                                             'resources/asteroids/a_1')
 
     def auto_start(self):
         self.rect.x = uniform(0, WINDOW_WIDTH-self.rect.w)
