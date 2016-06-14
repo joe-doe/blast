@@ -50,8 +50,7 @@ class Level(Scene):
         self.explosions = pygame.sprite.Group()
         self.background = pygame.sprite.Group()
 
-        self.initialize_background()
-        self.initialize_sprites()
+        super(Level, self).initialize_scene()
 
     def get_battleship(self):
         return self.battleship
@@ -86,7 +85,7 @@ class Level(Scene):
             self.friend_sprites.remove(self.battleship)
             self.explosions.add(ExplosionOne(collided_item.rect))
             self.game_data.lives.live_subtract()
-            self.initialize_level()
+            self.initialize_scene()
 
         # battleship bullet
         for bullet in self.friend_bullets:

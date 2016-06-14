@@ -20,6 +20,7 @@ class Level01(Level):
         self.friend_sprites.add(self.battleship)
 
     def run(self):
-        while self.friend_sprites.has(self.battleship):
+        while True:
+	        # while self.friend_sprites.has(self.battleship):
             time.sleep(2)
             self.enemy_sprites.add(AsteroidAlpha())
