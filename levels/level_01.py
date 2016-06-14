@@ -6,8 +6,8 @@ from sprites.background import Background
 
 
 class Level01(Level):
-    def __init__(self):
-        super(Level01, self).__init__()
+    def __init__(self, score):
+        super(Level01, self).__init__(score)
         print "LEVEL 01 STARTED"
 
     def initialize_background(self):

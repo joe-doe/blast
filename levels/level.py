@@ -15,9 +15,11 @@ class Level(threading.Thread):
     background = None
     battleship = None
 
-    def __init__(self):
+    def __init__(self, score):
         super(Level, self).__init__()
         self.setDaemon(True)
+
+        self.score = score
 
         self.enemy_sprites = pygame.sprite.Group()
         self.enemy_bullets = pygame.sprite.Group()
@@ -101,3 +103,4 @@ class Level(threading.Thread):
                 self.enemy_sprites.remove(collided_item)
                 self.friend_bullets.remove(bullet)
                 self.explosions.add(ExplosionOne(collided_item.rect))
+                self.score.modify_score(10)
