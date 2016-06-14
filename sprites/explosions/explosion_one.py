@@ -1,23 +1,19 @@
 import os
 import sys
-from ..animated_sprite import AnimatedSprite
+from sprites.animated_sprite import AnimatedSprite
 
 
 class ExplosionOne(AnimatedSprite):
 
-    def __init__(self):
-        super(ExplosionOne, self).__init__()
+    def __init__(self, pos):
+        super(ExplosionOne, self).__init__(False)
 
-        self.auto_start()
+        self.rect.centerx, self.rect.centery = pos.centerx, pos.centery
 
     def set_image_set_folder(self):
         self.image_set_folder = os.path.join(sys.path[0],
                                              'resources/explosions/a_1')
 
-    def auto_start(self):
-        self.rect.x = 1
-        self.rect.y = 2
-        self.x_step = 3
-        self.y_step = 4
+    def update(self):
+        self.load_next_image()
 
-        self.x_direction = 0

@@ -7,47 +7,55 @@ from os.path import isfile, join
 
 class AnimatedSprite(Sprite):
 
-    image_set = []
+    image_set = None
     image_set_length = 0
     image_set_folder = None
+    loop_forever = False
     current_image_idx = 0
-    should_explode = False
 
-    def __init__(self):
+    def __init__(self, loop_forever):
         super(AnimatedSprite, self).__init__()
 
-        self.set_image_set_folder()
+        self.loop_forever = loop_forever
+        self.image_set = []
         self.setup()
 
     def set_image_set_folder(self):
         pass
 
+    def start(self):
+        pass
+
     def setup(self):
+        self.set_image_set_folder()
+
         path = self.image_set_folder+'/01.png'
         self.image = pygame.image.load(path).convert_alpha()
         self.rect = self.image.get_rect()
-
         self.load_image_set()
 
-    def start(self):
-        pass
+        self.start()
 
     def load_image_set(self):
         image_files = [f for f in listdir(self.image_set_folder)
                        if isfile(join(self.image_set_folder, f))]
         image_files.sort()
         self.image_set_length = len(image_files)
-        print self.image_set_length
         for img in image_files:
             image = join(self.image_set_folder, img)
             self.image_set.append(pygame.image.load(image).convert_alpha())
 
     def load_next_image(self):
-        print self.current_image_idx
-        self.image = self.image_set[self.current_image_idx]
+        try:
+            self.image = self.image_set[self.current_image_idx]
+        except IndexError:
+            self.kill()
 
-        if self.current_image_idx == self.image_set_length-1:
-            self.current_image_idx = 0
+        if self.loop_forever:
+            if self.current_image_idx == self.image_set_length - 1:
+                self.current_image_idx = 0
+            else:
+                self.current_image_idx += 1
         else:
             self.current_image_idx += 1
 

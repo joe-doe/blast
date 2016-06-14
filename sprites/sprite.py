@@ -4,7 +4,7 @@ import pygame
 class Sprite(pygame.sprite.Sprite):
     image = None
     rect = None
-    should_die = False
+    out_of_bounds = False
     x_step = 0
     y_step = 0
     x_direction = None
@@ -22,7 +22,4 @@ class Sprite(pygame.sprite.Sprite):
         pass
 
     def go_down(self):
-        pass
-
-    def explode(self):
         pass
