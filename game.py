@@ -23,7 +23,7 @@ class Game(object):
 
         self.game_data = GameData(self.screen)
 
-        self.level = Level01(self.game_data.score)
+        self.level = Level01(self.game_data)
         self.level.start()
 
         self.start_main_loop()

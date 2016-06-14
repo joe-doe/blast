@@ -15,12 +15,14 @@ class Level(threading.Thread):
     background = None
     battleship = None
 
-    def __init__(self, score):
+    def __init__(self, game_data):
         super(Level, self).__init__()
         self.setDaemon(True)
 
-        self.score = score
+        self.game_data = game_data
+        self.initialize_level()
 
+    def initialize_level(self):
         self.enemy_sprites = pygame.sprite.Group()
         self.enemy_bullets = pygame.sprite.Group()
 
@@ -91,9 +93,10 @@ class Level(threading.Thread):
                                                        self.enemy_sprites)
         if collided_item:
             print "you lost a life"
-            # self.friend_sprites.remove(self.battleship)
-            # self.explosions.add(ExplosionOne(collided_item.rect))
-            # self.life_lost()
+            self.friend_sprites.remove(self.battleship)
+            self.explosions.add(ExplosionOne(collided_item.rect))
+            self.game_data.lives.live_subtract()
+            self.initialize_level()
 
         # battleship bullet
         for bullet in self.friend_bullets:
@@ -103,4 +106,4 @@ class Level(threading.Thread):
                 self.enemy_sprites.remove(collided_item)
                 self.friend_bullets.remove(bullet)
                 self.explosions.add(ExplosionOne(collided_item.rect))
-                self.score.modify_score(10)
+                self.game_data.score.modify_score(10)

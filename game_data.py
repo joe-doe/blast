@@ -10,11 +10,16 @@ class GameData(object):
     distance_between = 0
     high_score = 0
 
+    score = None
+    lives = None
+
     def __init__(self, screen):
         super(GameData, self).__init__()
 
         self.screen = screen
         self.score = Score()
+        self.lives = Lives()
+
         self.font = pygame.font.Font(None, 30)
 
     def update(self):
@@ -46,6 +51,12 @@ class GameData(object):
 
         self.screen.blit(score_text, pos)
 
+        live_img = pygame.image.load('resources/spaceship/'
+                                       'spaceship_1.png').convert_alpha()
+        for i in range(self.lives.get_lives()):
+            pos = (50+(50*i), 10)
+            self.screen.blit(live_img, pos)
+
 
 class Score(object):
     total = 0
@@ -75,3 +86,20 @@ class Score(object):
     def save_to_disk(self):
         file_obj = open(self.filename, 'wb')
         pickle.dump(self.high_total, file_obj)
+
+
+class Lives(object):
+    lives = 0
+
+    def __init__(self):
+        super(Lives, self).__init__()
+        self.lives = LIVES
+
+    def live_add(self):
+        self.lives += 1
+
+    def live_subtract(self):
+        self.lives -= 1
+
+    def get_lives(self):
+        return self.lives
