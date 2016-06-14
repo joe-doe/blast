@@ -1,10 +1,9 @@
 import pygame
-import threading
-
+from scenes.scene import Scene
 from sprites.explosions.explosion_one import ExplosionOne
 
 
-class Level(threading.Thread):
+class Level(Scene):
     enemy_sprites = None
     enemy_bullets = None
 
@@ -12,34 +11,12 @@ class Level(threading.Thread):
     friend_bullets = None
 
     explosions = None
-    background = None
     battleship = None
 
     def __init__(self, game_data):
         super(Level, self).__init__()
-        self.setDaemon(True)
 
         self.game_data = game_data
-        self.initialize_level()
-
-    def initialize_level(self):
-        self.enemy_sprites = pygame.sprite.Group()
-        self.enemy_bullets = pygame.sprite.Group()
-
-        self.friend_sprites = pygame.sprite.Group()
-        self.friend_bullets = pygame.sprite.Group()
-
-        self.explosions = pygame.sprite.Group()
-        self.background = pygame.sprite.Group()
-
-        self.initialize_background()
-        self.initialize_sprites()
-
-    def initialize_background(self):
-        pass
-
-    def initialize_sprites(self):
-        pass
 
     def update(self):
         self.background.update()
@@ -62,6 +39,19 @@ class Level(threading.Thread):
         self.friend_bullets.draw(screen)
 
         self.explosions.draw(screen)
+
+    def initialize_scene(self):
+        self.enemy_sprites = pygame.sprite.Group()
+        self.enemy_bullets = pygame.sprite.Group()
+
+        self.friend_sprites = pygame.sprite.Group()
+        self.friend_bullets = pygame.sprite.Group()
+
+        self.explosions = pygame.sprite.Group()
+        self.background = pygame.sprite.Group()
+
+        self.initialize_background()
+        self.initialize_sprites()
 
     def get_battleship(self):
         return self.battleship

@@ -2,8 +2,6 @@ import pygame
 from constants import *
 from sprite import Sprite
 from sprites.bullet import Bullet
-from pygame.locals import *
-import sys
 
 
 class Battleship(Sprite):
@@ -22,25 +20,7 @@ class Battleship(Sprite):
         self.y_step = 6
 
     def update(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            self.go_left()
-        if keys[pygame.K_RIGHT]:
-            self.go_right()
-        if keys[pygame.K_DOWN]:
-            self.go_down()
-        if keys[pygame.K_UP]:
-            self.go_up()
-        # if keys[pygame.K_LCTRL]:
-        #     self.fire()
-
-        for event in pygame.event.get():
-            if event.type == KEYDOWN:
-                if event.key == K_LCTRL:
-                    self.fire()
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit(0)
+        pass
 
     def fire(self):
         self.friend_bullets.add(Bullet(self.rect))
