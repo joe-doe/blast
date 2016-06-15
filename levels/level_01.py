@@ -6,6 +6,7 @@ from sprites.background import Background
 
 
 class Level01(Level):
+
     def __init__(self, score):
         super(Level01, self).__init__(score)
         print "LEVEL 01 STARTED"
@@ -20,7 +21,8 @@ class Level01(Level):
         self.friend_sprites.add(self.battleship)
 
     def run(self):
-        while True:
-	        # while self.friend_sprites.has(self.battleship):
+        while not (self.game_over and self.load_next_scene):
             time.sleep(2)
             self.enemy_sprites.add(AsteroidAlpha())
+            if self.game_data.score.total == 100:
+                self.load_next_scene = True

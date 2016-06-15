@@ -13,7 +13,7 @@ class Intro(Scene):
 
     def initialize_background(self):
         self.all_sprites.add(
-            Background(img='resources/L1_background_800x600.png', speed=0)
+            Background(img='resources/L1_background_800x600.png', speed=1)
         )
 
     def initialize_sprites(self):
@@ -40,6 +40,5 @@ class Intro(Scene):
         self.all_sprites.draw(screen)
         self.draw_extra(screen)
 
-
-
-
+    def run(self):
+        pass

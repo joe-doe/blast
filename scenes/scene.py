@@ -5,14 +5,14 @@ import pygame
 class Scene(threading.Thread):
     background = None
     all_sprites = None
+    load_next_scene = None
 
     def __init__(self):
         super(Scene, self).__init__()
 
+        self.load_next_scene = False
         self.setDaemon(True)
-
         self.all_sprites = pygame.sprite.Group()
-
         self.initialize_scene()
 
     def initialize_background(self):

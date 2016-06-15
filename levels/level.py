@@ -13,6 +13,8 @@ class Level(Scene):
     explosions = None
     battleship = None
 
+    game_over = False
+
     def __init__(self, game_data):
         super(Level, self).__init__()
 
@@ -85,7 +87,11 @@ class Level(Scene):
             self.friend_sprites.remove(self.battleship)
             self.explosions.add(ExplosionOne(collided_item.rect))
             self.game_data.lives.live_subtract()
-            self.initialize_scene()
+
+            if self.game_data.lives.get_lives() < 0:
+                self.game_over = True
+            else:
+                self.initialize_scene()
 
         # battleship bullet
         for bullet in self.friend_bullets:
