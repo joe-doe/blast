@@ -26,25 +26,25 @@ class Battleship(Sprite):
         self.friend_bullets.add(Bullet(self.rect))
 
     def go_left(self):
-        if self.rect.x == 0:
-            self.rect.x = WINDOW_WIDTH - self.rect.w
+        if self.rect.x <= - self.rect.w:
+            self.rect.x = WINDOW_WIDTH
         else:
             self.rect.x -= self.x_step
 
     def go_right(self):
-        if self.rect.x == WINDOW_WIDTH - self.rect.w:
-            self.rect.x = 0
+        if self.rect.x == WINDOW_WIDTH:
+            self.rect.x = - self.rect.w
         else:
             self.rect.x += self.x_step
 
     def go_up(self):
-        if self.rect.y == 0:
-            self.rect.y = WINDOW_HEIGHT - self.rect.h
+        if self.rect.y <= - self.rect.h:
+            self.rect.y = WINDOW_HEIGHT
         else:
             self.rect.y -= self.y_step
 
     def go_down(self):
-        if self.rect.y == WINDOW_HEIGHT - self.rect.h:
-            self.rect.y = 0
+        if self.rect.y >= WINDOW_HEIGHT + self.rect.h:
+            self.rect.y = - self.rect.h
         else:
             self.rect.y += self.y_step
