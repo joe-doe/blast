@@ -1,7 +1,7 @@
 import time
 from level import Level
-from sprites.battleship import Battleship
-from sprites.asteroids.asteroid_alpha import AsteroidAlpha
+from sprites.battleship import BattleshipOne
+from sprites.asteroids.asteroid import AsteroidAlpha
 from sprites.background import Background
 
 
@@ -17,8 +17,9 @@ class Level02(Level):
         )
 
     def initialize_sprites(self):
-        self.battleship = Battleship(self.friend_bullets)
+        self.battleship = BattleshipOne(self.friend_bullets).battleship
         self.friend_sprites.add(self.battleship)
+
 
     def run(self):
         while not (self.game_over and self.load_next_scene):

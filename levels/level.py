@@ -72,11 +72,11 @@ class Level(Scene):
     def clear_the_dead(self):
         # out of level
         for sprite in self.enemy_sprites:
-            if sprite.out_of_bounds is True:
+            if sprite.sprite_data.out_of_bounds is True:
                 self.enemy_sprites.remove(sprite)
 
         for sprite in self.friend_sprites:
-            if sprite.out_of_bounds is True:
+            if sprite.sprite_data.out_of_bounds is True:
                 self.friend_sprites.remove(sprite)
 
         # enemy sprite hit battleship
@@ -100,5 +100,5 @@ class Level(Scene):
             if collided_item:
                 self.enemy_sprites.remove(collided_item)
                 self.friend_bullets.remove(bullet)
-                self.explosions.add(ExplosionOne(collided_item.rect))
+                self.explosions.add(ExplosionOne(collided_item).explosion)
                 self.game_data.score.modify_score(10)
