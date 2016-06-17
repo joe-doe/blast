@@ -1,6 +1,6 @@
 import pygame
 from scenes.scene import Scene
-from sprites.explosions.explosion_one import ExplosionOne
+from sprites.explosions.explosion import ExplosionOne
 
 
 class Level(Scene):

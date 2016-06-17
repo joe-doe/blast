@@ -26,14 +26,13 @@ class Enemy(Sprite):
         # print "y_step: {}".format(self.sprite_data.y_step)
 
     def fire(self):
-        pass
-        # bullet_data = SpriteData(
-        #     image_path='resources/spaceship/bullet.png',
-        #     x_step=0,
-        #     y_step=8,
-        #     pos_relative_to=self.rect
-        # )
-        # self.friend_bullets.add(Bullet(bullet_data))
+        bullet_data = SpriteData(
+            image_path='resources/spaceship/bullet.png',
+            x_step=0,
+            y_step=8,
+            pos_relative_to=self.rect
+        )
+        self.friend_bullets.add(Bullet(bullet_data))
 
     def go_left(self):
         if self.rect.x <= - self.rect.w:

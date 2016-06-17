@@ -1,7 +1,7 @@
 from constants import *
 from sprite import Sprite
-from sprites.bullet import Bullet
-from sprites.sprite_data import SpriteData, AnimatedSpriteData
+from sprites.bullet import BulletOne
+from sprites.sprite_data import SpriteData
 
 
 class Battleship(Sprite):
@@ -19,13 +19,7 @@ class Battleship(Sprite):
         pass
 
     def fire(self):
-        bullet_data = SpriteData(
-            image_path='resources/spaceship/bullet.png',
-            x_step=0,
-            y_step=8,
-            pos_relative_to=self.rect
-        )
-        self.friend_bullets.add(Bullet(bullet_data))
+        self.friend_bullets.add(BulletOne(self).bullet)
 
     def go_left(self):
         if self.rect.x <= - self.rect.w:
