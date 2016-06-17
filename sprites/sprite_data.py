@@ -6,7 +6,9 @@ import pygame
 class SpriteData(object):
 
     image_path = None
+    x_start = None
     x_step = None
+    y_start = None
     y_step = None
     direction = None
     out_of_bounds = None
@@ -14,7 +16,9 @@ class SpriteData(object):
 
     def __init__(self,
                  image_path=None,
+                 x_start=0,
                  x_step=0,
+                 y_start=0,
                  y_step=0,
                  direction=1,
                  out_of_bounds=False,
@@ -22,7 +26,9 @@ class SpriteData(object):
         super(SpriteData, self).__init__()
 
         self.image_path = image_path
+        self.x_start = x_start
         self.x_step = x_step
+        self.y_start = y_start
         self.y_step = y_step
         self.direction = direction
         self.out_of_bounds = out_of_bounds
@@ -54,15 +60,19 @@ class AnimatedSpriteData(SpriteData):
     def __init__(self,
                  image_set_folder=None,
                  loop_forever=False,
+                 x_start=0,
                  x_step=0,
+                 y_start=0,
                  y_step=0,
                  direction=1,
                  out_of_bounds=False,
                  pos_relative_to=None):
         super(AnimatedSpriteData, self).__init__(
             image_path=None,
+            x_start=x_start,
             x_step=x_step,
             y_step=y_step,
+            y_start=y_start,
             direction=direction,
             out_of_bounds=out_of_bounds,
             pos_relative_to=pos_relative_to

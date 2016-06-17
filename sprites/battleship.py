@@ -15,35 +15,11 @@ class Battleship(Sprite):
         self.rect.x = WINDOW_WIDTH/2 - self.rect.w/2
         self.rect.y = WINDOW_HEIGHT - self.rect.h*3
 
-    def update(self):
-        pass
-
     def fire(self):
         self.friend_bullets.add(BulletOne(self).bullet)
 
-    def go_left(self):
-        if self.rect.x <= - self.rect.w:
-            self.rect.x = WINDOW_WIDTH
-        else:
-            self.rect.x -= self.sprite_data.x_step
-
-    def go_right(self):
-        if self.rect.x == WINDOW_WIDTH:
-            self.rect.x = - self.rect.w
-        else:
-            self.rect.x += self.sprite_data.x_step
-
-    def go_up(self):
-        if self.rect.y <= - self.rect.h:
-            self.rect.y = WINDOW_HEIGHT
-        else:
-            self.rect.y -= self.sprite_data.y_step
-
-    def go_down(self):
-        if self.rect.y >= WINDOW_HEIGHT + self.rect.h:
-            self.rect.y = - self.rect.h
-        else:
-            self.rect.y += self.sprite_data.y_step
+    def update(self):
+        super(Battleship, self).update()
 
 
 class BattleshipOne(object):

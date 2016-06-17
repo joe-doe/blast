@@ -15,7 +15,10 @@ class Explosion(AnimatedSprite):
         self.rect.centery = self.sprite_data.pos_relative_to.centery
 
     def update(self):
-        self.load_next_image()
+        super(Explosion, self).update()
+
+        self.rect.y += self.sprite_data.y_step
+        self.rect.x += self.sprite_data.x_step
 
 
 class ExplosionOne(object):

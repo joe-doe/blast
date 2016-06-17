@@ -1,9 +1,9 @@
 import time
 from level import Level
+from sprites.asteroids.asteroid import AsteroidAlpha, AsteroidBeltOne
 from sprites.battleship import BattleshipOne
-from sprites.asteroids.asteroid import AsteroidAlpha
 from sprites.background import Background
-from sprites.enemies.enemy import EnemyOne
+from sprites.enemies.enemy import EnemyOne, EnemySetOne, EnemySetTwo
 from sprites.sprite_data import SpriteData
 
 
@@ -26,18 +26,36 @@ class Level01(Level):
         self.friend_sprites.add(self.battleship)
 
     def run(self):
-        while not (self.game_over and self.load_next_scene):
+        time.sleep(1)
+
+        # asteroid belt
+        asteroid_belt_one = AsteroidBeltOne(how_many=5)
+        self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
+
+        # wait until stage cleared
+        while self.enemy_sprites.sprites():
             time.sleep(2)
-            # self.enemy_sprites.add(AsteroidAlpha().asteroid)
-            e1 = EnemyOne().enemy
 
-            self.enemy_sprites.add(e1)
+        # enemy set one
+        enemy_set_one = EnemySetOne(how_many=4, start_here=100)
+        self.enemy_sprites.add(enemy_set_one.get_enemy_set())
+        enemy_set_one.start_movement()
+
+        # wait until stage cleared
+        while self.enemy_sprites.sprites():
             time.sleep(2)
-            e1.sprite_data.set_y_step(8)
 
-            time.sleep(1)
-            e1.sprite_data.set_x_step(8)
-            e1.go_left()
+        # enemy set two
+        enemy_set_two = EnemySetTwo(how_many=4, start_here=500)
+        self.enemy_sprites.add(enemy_set_two.get_enemy_set())
+        enemy_set_two.start_movement()
 
-            if self.game_data.score.total == 100:
-                self.load_next_scene = True
+        # wait until stage cleared
+        while self.enemy_sprites.sprites():
+            time.sleep(2)
+
+        # asteroid belt
+        asteroid_belt_one = AsteroidBeltOne(how_many=5)
+        self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
+
+        self.load_next_scene = True

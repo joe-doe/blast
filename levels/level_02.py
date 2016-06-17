@@ -1,30 +1,60 @@
 import time
 from level import Level
+from sprites.asteroids.asteroid import AsteroidAlpha, AsteroidBeltOne
 from sprites.battleship import BattleshipOne
-from sprites.asteroids.asteroid import AsteroidAlpha
 from sprites.background import Background
+from sprites.enemies.enemy import EnemyOne, EnemySetOne, EnemySetTwo
+from sprites.sprite_data import SpriteData
 
 
-class Level02(Level):
-
+class Level01(Level):
     def __init__(self, score):
-        super(Level02, self).__init__(score)
+        super(Level01, self).__init__(score)
         print "LEVEL 01 STARTED"
 
     def initialize_background(self):
-        self.background.add(
-            Background(img='resources/L2_background_800x600.png', speed=1)
+        background_data = SpriteData(
+            image_path='resources/L2_background_800x600.png',
+            y_step=1
         )
+        self.background.add(Background(background_data))
 
     def initialize_sprites(self):
+
         self.battleship = BattleshipOne(self.friend_bullets).battleship
         self.friend_sprites.add(self.battleship)
 
-
     def run(self):
-        while not (self.game_over and self.load_next_scene):
-            # while self.friend_sprites.has(self.battleship):
+        time.sleep(1)
+
+        # enemy set one
+        enemy_set_one = EnemySetOne(how_many=4, start_here=100)
+        self.enemy_sprites.add(enemy_set_one.get_enemy_set())
+        enemy_set_one.start_movement()
+
+        # wait until stage cleared
+        while self.enemy_sprites.sprites():
             time.sleep(2)
-            self.enemy_sprites.add(AsteroidAlpha())
-            time.sleep(1)
-            self.load_next_scene = True
+
+        # asteroid belt
+        asteroid_belt_one = AsteroidBeltOne(how_many=5)
+        self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
+
+        # just rest for a bit
+        time.sleep(3)
+
+        # enemy set two
+        enemy_set_two = EnemySetTwo(how_many=4, start_here=500)
+        self.enemy_sprites.add(enemy_set_two.get_enemy_set())
+        enemy_set_two.start_movement()
+
+        # wait until stage cleared
+        while self.enemy_sprites.sprites():
+            time.sleep(2)
+
+        # asteroid belt
+        asteroid_belt_one = AsteroidBeltOne(how_many=5)
+        self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
+
+        self.load_next_scene = True
+

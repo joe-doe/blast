@@ -31,6 +31,9 @@ class Level(Scene):
 
         self.explosions.update()
 
+        if self.game_data.score.total == 100:
+            self.load_next_scene = True
+
     def draw(self, screen):
         self.background.draw(screen)
 
@@ -85,7 +88,7 @@ class Level(Scene):
         if collided_item:
             print "you lost a life"
             self.friend_sprites.remove(self.battleship)
-            self.explosions.add(ExplosionOne(collided_item.rect))
+            self.explosions.add(ExplosionOne(collided_item).explosion)
             self.game_data.lives.live_subtract()
 
             if self.game_data.lives.get_lives() < 0:

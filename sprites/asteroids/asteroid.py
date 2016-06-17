@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 from random import (
     randint,
     uniform
@@ -23,31 +24,10 @@ class Asteroid(AnimatedSprite):
         self.sprite_data.x_direction = randint(0, 1)
 
     def update(self):
-        if self.rect.x > WINDOW_WIDTH + self.rect.w  \
-                or self.rect.x < -self.rect.w  \
-                or self.rect.y >= WINDOW_HEIGHT + self.rect.h:
-            self.sprite_data.out_of_bounds = True
-            return
+        super(Asteroid, self).update()
 
-        if self.sprite_data.x_direction == 0:
-            self.go_right()
-        else:
-            self.go_left()
-
-        self.go_down()
-        self.load_next_image()
-
-    def go_left(self):
-        self.rect.x -= self.sprite_data.x_step
-
-    def go_right(self):
-        self.rect.x += self.sprite_data.x_step
-
-    def go_up(self):
-        self.rect.y -= self.sprite_data.y_step
-
-    def go_down(self):
         self.rect.y += self.sprite_data.y_step
+        self.rect.x += self.sprite_data.x_step
 
 
 class AsteroidAlpha(object):
@@ -60,6 +40,40 @@ class AsteroidAlpha(object):
         asteroid_data = AnimatedSpriteData(
             image_set_folder=os.path.join(sys.path[0],
                                           'resources/asteroids/a_1'),
-            loop_forever=True
+            loop_forever=True,
+            y_step=2
         )
         self.asteroid = Asteroid(asteroid_data)
+
+
+class AsteroidBelt(object):
+    how_many = 0
+    asteroid_set = None
+    asteroid_data = None
+
+    def __init__(self, how_many):
+        super(AsteroidBelt, self).__init__()
+        self.asteroid_set = []
+        self.how_many = how_many
+        self.initialize_set()
+
+    def initialize_set(self):
+        pass
+
+    def get_asteroid_set(self):
+        for asteroid in self.asteroid_set:
+            time.sleep(0.5)
+            yield asteroid
+
+
+class AsteroidBeltOne(AsteroidBelt):
+        def __init__(self, how_many=3):
+            super(AsteroidBeltOne, self).__init__(how_many)
+
+        def initialize_set(self):
+            for i in range(self.how_many):
+                asteroid_data = AnimatedSpriteData(
+                    image_set_folder='resources/asteroids/a_1',
+                    loop_forever=True
+                )
+                self.asteroid_set.append(Asteroid(asteroid_data))

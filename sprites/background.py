@@ -12,4 +12,7 @@ class Background(Sprite):
         self.rect.y = WINDOW_HEIGHT - self.rect.h
 
     def update(self):
+        super(Background, self).update()
+
         self.rect.y += self.sprite_data.y_step
+        self.rect.x += self.sprite_data.x_step

@@ -12,9 +12,10 @@ class Bullet(Sprite):
         self.rect.y = self.sprite_data.pos_relative_to.y
 
     def update(self):
-        if self.rect.y <= - self.rect.h:
-            self.sprite_data.out_of_bounds = True
-        self.rect.y -= self.sprite_data.y_step
+        super(Bullet, self).update()
+
+        self.rect.y += self.sprite_data.y_step
+        self.rect.x += self.sprite_data.x_step
 
 
 class BulletOne(object):
@@ -26,7 +27,7 @@ class BulletOne(object):
         bullet_one_data = SpriteData(
             image_path='resources/spaceship/bullet.png',
             x_step=0,
-            y_step=8,
+            y_step=-8,
             pos_relative_to=igniter.rect
         )
         self.bullet = Bullet(bullet_one_data)

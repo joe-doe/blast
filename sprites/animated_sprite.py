@@ -9,6 +9,10 @@ class AnimatedSprite(Sprite):
     def __init__(self, animated_sprite_data):
         super(AnimatedSprite, self).__init__(animated_sprite_data)
 
+    def update(self):
+        super(AnimatedSprite, self).update()
+        self.load_next_image()
+
     def load_next_image(self):
         try:
             self.image = self.sprite_data.image_set[self.current_image_idx]
