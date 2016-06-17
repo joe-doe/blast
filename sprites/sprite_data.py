@@ -13,6 +13,7 @@ class SpriteData(object):
     direction = None
     out_of_bounds = None
     pos_relative_to = None
+    should_fire = None
 
     def __init__(self,
                  image_path=None,
@@ -22,7 +23,8 @@ class SpriteData(object):
                  y_step=0,
                  direction=1,
                  out_of_bounds=False,
-                 pos_relative_to=None):
+                 pos_relative_to=None,
+                 should_fire=False):
         super(SpriteData, self).__init__()
 
         self.image_path = image_path
@@ -33,6 +35,7 @@ class SpriteData(object):
         self.direction = direction
         self.out_of_bounds = out_of_bounds
         self.pos_relative_to = pos_relative_to
+        self.should_fire=should_fire
 
     def set_image_path(self, image_path):
         self.image_path = image_path
@@ -66,7 +69,8 @@ class AnimatedSpriteData(SpriteData):
                  y_step=0,
                  direction=1,
                  out_of_bounds=False,
-                 pos_relative_to=None):
+                 pos_relative_to=None,
+                 should_fire=False):
         super(AnimatedSpriteData, self).__init__(
             image_path=None,
             x_start=x_start,
@@ -75,7 +79,8 @@ class AnimatedSpriteData(SpriteData):
             y_start=y_start,
             direction=direction,
             out_of_bounds=out_of_bounds,
-            pos_relative_to=pos_relative_to
+            pos_relative_to=pos_relative_to,
+            should_fire=should_fire
         )
 
         self.image_set_folder = image_set_folder

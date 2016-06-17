@@ -28,7 +28,7 @@ class GameData(object):
         high_score_text = self.font.render(
             high_score_str,
             True,
-            (255, 255, 255))
+            WHITE)
 
         pos = (WINDOW_WIDTH -
                high_score_text.get_width() -
@@ -41,7 +41,7 @@ class GameData(object):
         score_text = self.font.render(
             score_str,
             True,
-            (255, 255, 255))
+            WHITE)
 
         pos = (WINDOW_WIDTH -
                score_text.get_width() -

@@ -1,8 +1,7 @@
 from scenes.scene import Scene
 from sprites.background import Background
-import pygame
-from constants import *
 from sprites.sprite_data import SpriteData
+from constants import *
 
 
 class Intro(Scene):
@@ -25,25 +24,12 @@ class Intro(Scene):
 
     def draw(self, screen):
         self.extra_sprites.draw(screen)
-        self.draw_extra(screen)
+        self.print_out(screen=screen,
+                       string='Press 1 to start',
+                       position='center',
+                       size=50,
+                       color=RED)
 
     def run(self):
         # time line is not applicable here
         pass
-
-    def draw_extra(self, screen):
-        font = pygame.font.Font(None, 30)
-
-        high_score_str = "Press 1 to start"
-
-        high_score_text = font.render(
-            high_score_str,
-            True,
-            (255, 255, 255))
-
-        pos = (
-            (WINDOW_WIDTH / 2) - (high_score_text.get_width() / 2),
-            WINDOW_HEIGHT / 2
-        )
-
-        screen.blit(high_score_text, pos)

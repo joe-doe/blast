@@ -4,6 +4,8 @@ from sprites.background import Background
 from constants import *
 import pygame
 
+from sprites.sprite_data import SpriteData
+
 
 class Credits(Scene):
     def __init__(self):
@@ -11,19 +13,25 @@ class Credits(Scene):
         print "Credits"
 
     def initialize_background(self):
-        self.all_sprites.add(
-            Background(img='resources/L1_background_800x600.png', speed=0)
+        background_data = SpriteData(
+            image_path='resources/L1_background_800x600.png',
+            y_step=1
         )
+        self.extra_sprites.add(Background(background_data))
 
     def initialize_sprites(self):
         pass
 
     def update(self):
-        self.all_sprites.update()
+        self.extra_sprites.update()
 
     def draw(self, screen):
-        self.all_sprites.draw(screen)
+        self.extra_sprites.draw(screen)
         self.draw_extra(screen)
+        self.print_out(screen=screen,
+                       string='Press space to continue',
+                       position='bottom-center',
+                       color=RED)
 
     def run(self):
         time.sleep(3)
@@ -32,19 +40,9 @@ class Credits(Scene):
     def draw_extra(self, screen):
 
         g_o = pygame.image.load('resources/credits.png').convert_alpha()
-        pos = ((WINDOW_WIDTH / 2) - (g_o.get_width() / 2), WINDOW_HEIGHT / 2)
+        pos = (
+                  (WINDOW_WIDTH / 2) - (g_o.get_width() / 2),
+                  (WINDOW_HEIGHT / 2) - 50
+        )
 
         screen.blit(g_o, pos)
-
-        font = pygame.font.Font(None, 30)
-
-        move_on = "Press space to continue"
-
-        move_on_text = font.render(
-            move_on,
-            True,
-            (255, 255, 255))
-
-        pos = ((WINDOW_WIDTH/2)-(move_on_text.get_width()/2), 150)
-
-        screen.blit(move_on_text, pos)

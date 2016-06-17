@@ -2,14 +2,16 @@ from constants import *
 from sprites.bullet import Bullet
 from sprites.sprite import Sprite
 from sprites.sprite_data import SpriteData
-from random import uniform
+from random import uniform, randint
 import time
 
 
 class Enemy(Sprite):
+    enemy_bullets = None
 
-    def __init__(self, enemy_data):
+    def __init__(self, enemy_data, enemy_bullets):
         super(Enemy, self).__init__(enemy_data)
+        self.enemy_bullets = enemy_bullets
 
     def fire(self):
         bullet_data = SpriteData(
@@ -23,6 +25,9 @@ class Enemy(Sprite):
     def update(self):
         super(Enemy, self).update()
 
+        if self.sprite_data.should_fire:
+            if randint(0, 100) < 2:
+                self.fire()
         self.rect.y += self.sprite_data.y_step
         self.rect.x += self.sprite_data.x_step
 
@@ -30,7 +35,7 @@ class Enemy(Sprite):
 class EnemyOne(object):
     enemy = None
 
-    def __init__(self):
+    def __init__(self, enemy_bullets):
         super(EnemyOne, self).__init__()
 
         enemy_data = SpriteData(
@@ -39,7 +44,7 @@ class EnemyOne(object):
             y_step=4
         )
 
-        self.enemy = Enemy(enemy_data)
+        self.enemy = Enemy(enemy_data, enemy_bullets)
 
 
 class EnemySet(object):
@@ -48,10 +53,11 @@ class EnemySet(object):
     enemy_data = None
     start_here = None
 
-    def __init__(self, how_many, start_here):
+    def __init__(self, how_many, start_here, enemy_bullets):
         super(EnemySet, self).__init__()
 
         self.enemy_set = []
+        self.enemy_bullets = enemy_bullets
         self.how_many = how_many
         self.start_here = start_here
         self.initialize_set()
@@ -101,8 +107,8 @@ class EnemySet(object):
 
 
 class EnemySetOne(EnemySet):
-        def __init__(self, how_many=3, start_here=100):
-            super(EnemySetOne, self).__init__(how_many, start_here)
+        def __init__(self, how_many=3, start_here=100, enemy_bullets=None):
+            super(EnemySetOne, self).__init__(how_many, start_here, enemy_bullets)
 
         def initialize_set(self):
             for i in range(self.how_many):
@@ -111,7 +117,7 @@ class EnemySetOne(EnemySet):
                     x_start=self.start_here,
                     y_step=2
                 )
-                self.enemy_set.append(Enemy(enemy_data))
+                self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
 
         def start_movement(self):
             time.sleep(.7)
@@ -127,17 +133,18 @@ class EnemySetOne(EnemySet):
 
 
 class EnemySetTwo(EnemySet):
-        def __init__(self, how_many=3, start_here=100):
-            super(EnemySetTwo, self).__init__(how_many, start_here)
+        def __init__(self, how_many=3, start_here=100, enemy_bullets=None):
+            super(EnemySetTwo, self).__init__(how_many, start_here, enemy_bullets)
 
         def initialize_set(self):
             for i in range(self.how_many):
                 enemy_data = SpriteData(
                     image_path='resources/enemies/enemy_two.png',
                     x_start=self.start_here,
-                    y_step=3
+                    y_step=3,
+                    should_fire=True
                 )
-                self.enemy_set.append(Enemy(enemy_data))
+                self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
 
         def start_movement(self):
             time.sleep(1)

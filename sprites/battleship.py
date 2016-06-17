@@ -6,6 +6,8 @@ from sprites.sprite_data import SpriteData
 
 class Battleship(Sprite):
 
+    friend_bullets = None
+
     def __init__(self, battleship_data, friend_bullets):
         super(Battleship, self).__init__(battleship_data)
 
@@ -19,7 +21,10 @@ class Battleship(Sprite):
         self.friend_bullets.add(BulletOne(self).bullet)
 
     def update(self):
-        super(Battleship, self).update()
+        # we do not want battleship out of bounds
+        # if self.rect.y >= WINDOW_HEIGHT-self.rect.h:
+        #     self.sprite_data.y_step = 0
+        pass
 
 
 class BattleshipOne(object):

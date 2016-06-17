@@ -50,6 +50,7 @@ class Game(object):
                     self.scene.battleship.go_down()
                 if keys[pygame.K_UP]:
                     self.scene.battleship.go_up()
+                # autofire
                 # if keys[pygame.K_LCTRL]:
                 #     self.fire()
 
@@ -84,8 +85,8 @@ class Game(object):
                     try:
                         self.scene = self.levels[self.level_current](self.game_data)
                         self.scene.start()
-                    except Exception:
-                        # to termathses
+                    except IndexError:
+                        # show credits
                         self.level_current = 0
                         self.scene = Credits()
                         self.scene.start()
@@ -99,6 +100,7 @@ class Game(object):
             if isinstance(self.scene, Intro):
                 if self.scene.load_next_scene:
                     self.level_current = 0
+                    self.game_data = GameData(self.screen)
                     self.scene = self.levels[self.level_current](self.game_data)
                     self.scene.start()
 

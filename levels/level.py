@@ -83,18 +83,16 @@ class Level(Scene):
                 self.friend_sprites.remove(sprite)
 
         # enemy sprite hit battleship
-        collided_item = pygame.sprite.spritecollideany(self.battleship,
-                                                       self.enemy_sprites)
-        if collided_item:
-            print "you lost a life"
-            self.friend_sprites.remove(self.battleship)
-            self.explosions.add(ExplosionOne(collided_item).explosion)
-            self.game_data.lives.live_subtract()
+        collided_sprite = pygame.sprite.spritecollideany(self.battleship,
+                                                         self.enemy_sprites)
+        if collided_sprite:
+            self.lost_a_life(collided_sprite)
 
-            if self.game_data.lives.get_lives() < 0:
-                self.game_over = True
-            else:
-                self.initialize_scene()
+        # enemy bullet hit battleship
+        collided_bullet = pygame.sprite.spritecollideany(self.battleship,
+                                                         self.enemy_bullets)
+        if collided_bullet:
+            self.lost_a_life(collided_bullet)
 
         # battleship bullet
         for bullet in self.friend_bullets:
@@ -105,3 +103,14 @@ class Level(Scene):
                 self.friend_bullets.remove(bullet)
                 self.explosions.add(ExplosionOne(collided_item).explosion)
                 self.game_data.score.modify_score(10)
+
+    def lost_a_life(self, collided_item):
+        print "you lost a life"
+        self.friend_sprites.remove(self.battleship)
+        self.explosions.add(ExplosionOne(collided_item).explosion)
+        self.game_data.lives.live_subtract()
+
+        if self.game_data.lives.get_lives() < 0:
+            self.game_over = True
+        else:
+            self.initialize_scene()

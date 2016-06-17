@@ -1,9 +1,9 @@
 import time
 from level import Level
-from sprites.asteroids.asteroid import AsteroidAlpha, AsteroidBeltOne
+from sprites.asteroids.asteroid import AsteroidBeltOne
 from sprites.battleship import BattleshipOne
 from sprites.background import Background
-from sprites.enemies.enemy import EnemyOne, EnemySetOne, EnemySetTwo
+from sprites.enemies.enemy import EnemySetOne, EnemySetTwo
 from sprites.sprite_data import SpriteData
 
 
@@ -11,7 +11,7 @@ class Level01(Level):
 
     def __init__(self, score):
         super(Level01, self).__init__(score)
-        print "LEVEL 01 STARTED"
+        print "Level 01 Started"
 
     def initialize_background(self):
         background_data = SpriteData(
@@ -37,7 +37,9 @@ class Level01(Level):
             time.sleep(2)
 
         # enemy set one
-        enemy_set_one = EnemySetOne(how_many=4, start_here=100)
+        enemy_set_one = EnemySetOne(how_many=4,
+                                    start_here=100,
+                                    enemy_bullets=self.enemy_bullets)
         self.enemy_sprites.add(enemy_set_one.get_enemy_set())
         enemy_set_one.start_movement()
 
@@ -46,7 +48,9 @@ class Level01(Level):
             time.sleep(2)
 
         # enemy set two
-        enemy_set_two = EnemySetTwo(how_many=4, start_here=500)
+        enemy_set_two = EnemySetTwo(how_many=4,
+                                    start_here=500,
+                                    enemy_bullets=self.enemy_bullets)
         self.enemy_sprites.add(enemy_set_two.get_enemy_set())
         enemy_set_two.start_movement()
 
@@ -55,7 +59,11 @@ class Level01(Level):
             time.sleep(2)
 
         # asteroid belt
-        asteroid_belt_one = AsteroidBeltOne(how_many=5)
+        asteroid_belt_one = AsteroidBeltOne(how_many=10)
         self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
+
+        # wait until stage cleared
+        while self.enemy_sprites.sprites():
+            time.sleep(2)
 
         self.load_next_scene = True

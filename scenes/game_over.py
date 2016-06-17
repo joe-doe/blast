@@ -4,6 +4,8 @@ from sprites.background import Background
 from constants import *
 import pygame
 
+from sprites.sprite_data import SpriteData
+
 
 class GameOver(Scene):
     def __init__(self):
@@ -11,9 +13,11 @@ class GameOver(Scene):
         print "GAME OVER"
 
     def initialize_background(self):
-        self.all_sprites.add(
-            Background(img='resources/L1_background_800x600.png', speed=0)
+        background_data = SpriteData(
+            image_path='resources/L1_background_800x600.png',
+            y_step=1
         )
+        self.extra_sprites.add(Background(background_data))
 
     def initialize_sprites(self):
         pass
@@ -30,7 +34,6 @@ class GameOver(Scene):
         self.load_next_scene = True
 
     def draw_extra(self, screen):
-
         g_o = pygame.image.load('resources/g_o.png').convert_alpha()
         pos = ((WINDOW_WIDTH / 2) - (g_o.get_width() / 2), WINDOW_HEIGHT / 2)
 
