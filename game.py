@@ -61,6 +61,8 @@ class Game(object):
                             self.scene.battleship.fire()
                     if isinstance(self.scene, Intro):
                         if event.key == K_1:
+                            self.game_data = GameData(self.screen)
+
                             self.level_current = 0
                             self.scene = self.levels[self.level_current](self.game_data)
                             self.scene.start()
