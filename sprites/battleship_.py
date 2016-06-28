@@ -1,12 +1,10 @@
 from constants import *
-from sprites.animated_sprite import AnimatedControlledSprite
-from sprites.sprite_data import AnimatedSpriteData
+from sprite import Sprite
 from sprites.bullet import BulletOne
-import os
-import sys
+from sprites.sprite_data import SpriteData
 
 
-class Battleship(AnimatedControlledSprite):
+class Battleship(Sprite):
 
     friend_bullets = None
 
@@ -35,14 +33,10 @@ class BattleshipOne(object):
     def __init__(self, friend_bullets):
         super(BattleshipOne, self).__init__()
 
-        battleship_data = AnimatedSpriteData(
-            image_set_folder=os.path.join(
-                sys.path[0],
-                'resources/spaceship/spaceship'
-            ),
+        battleship_data = SpriteData(
+            image_path='resources/spaceship/spaceship_1.png',
             x_step=6,
-            y_step=6,
-            starting_image='/04.png'
+            y_step=6
         )
 
         self.battleship = Battleship(battleship_data, friend_bullets)

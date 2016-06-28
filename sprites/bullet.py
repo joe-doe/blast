@@ -8,8 +8,8 @@ class Bullet(Sprite):
         super(Bullet, self).__init__(bullet_data)
 
     def initialize_sprite(self):
-        self.rect.x = self.sprite_data.pos_relative_to.x
-        self.rect.y = self.sprite_data.pos_relative_to.y
+        self.rect.x = self.sprite_data.pos_relative_to.centerx
+        self.rect.y = self.sprite_data.pos_relative_to.centery
 
     def update(self):
         super(Bullet, self).update()

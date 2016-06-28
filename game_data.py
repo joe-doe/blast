@@ -52,9 +52,9 @@ class GameData(object):
         self.screen.blit(score_text, pos)
 
         live_img = pygame.image.load('resources/spaceship/'
-                                       'spaceship_1.png').convert_alpha()
+                                       'panel_spaceship.png').convert_alpha()
         for i in range(self.lives.get_lives()):
-            pos = (50+(50*i), 10)
+            pos = (50+(live_img.get_width()*i), 10)
             self.screen.blit(live_img, pos)
 
 

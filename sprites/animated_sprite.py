@@ -1,5 +1,6 @@
 from constants import *
 from sprite import Sprite
+import time
 
 
 class AnimatedSprite(Sprite):
@@ -44,4 +45,41 @@ class AnimatedSprite(Sprite):
         self.rect.y += self.sprite_data.y_step
 
 
+class AnimatedControlledSprite(Sprite):
 
+    current_image_idx = 0
+
+    def __init__(self, animated_controlled_sprite_data):
+        super(AnimatedControlledSprite, self).\
+            __init__(animated_controlled_sprite_data)
+
+    def update(self):
+        super(AnimatedControlledSprite, self).update()
+
+    def go_left(self, speed=0):
+        super(AnimatedControlledSprite, self).go_left()
+
+        try:
+            self.current_image_idx -= 1
+            if self.current_image_idx < 0:
+                raise IndexError
+            self.image = self.sprite_data.image_set[self.current_image_idx]
+        except IndexError:
+            self.current_image_idx += 1
+
+    def go_right(self, speed=0):
+        super(AnimatedControlledSprite, self).go_right()
+
+        try:
+            self.current_image_idx += 1
+            self.image = self.sprite_data.image_set[self.current_image_idx]
+        except IndexError:
+            self.current_image_idx -= 1
+
+    def get_straight(self, from_left):
+        if from_left:
+            while self.current_image_idx != 3:
+                self.go_right()
+        else:
+            while self.current_image_idx != 3:
+                self.go_left()

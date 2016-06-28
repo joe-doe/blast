@@ -70,7 +70,8 @@ class AnimatedSpriteData(SpriteData):
                  direction=1,
                  out_of_bounds=False,
                  pos_relative_to=None,
-                 should_fire=False):
+                 should_fire=False,
+                 starting_image='/01.png'):
         super(AnimatedSpriteData, self).__init__(
             image_path=None,
             x_start=x_start,
@@ -84,7 +85,7 @@ class AnimatedSpriteData(SpriteData):
         )
 
         self.image_set_folder = image_set_folder
-        self.image_path = self.image_set_folder+'/01.png'
+        self.image_path = self.image_set_folder+starting_image
         self.image_set = self.load_image_set()
         self.image_set_length = len(self.image_set)
         self.loop_forever = loop_forever

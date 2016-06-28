@@ -55,6 +55,11 @@ class Game(object):
                 #     self.fire()
 
             for event in pygame.event.get():
+                if event.type == KEYUP:
+                    if event.key == K_LEFT:
+                        self.scene.battleship.get_straight(True)
+                    if event.key == K_RIGHT:
+                        self.scene.battleship.get_straight(False)
                 if event.type == KEYDOWN:
                     if isinstance(self.scene, Level):
                         if event.key == K_LCTRL:
