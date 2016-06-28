@@ -23,10 +23,10 @@ class GameOver(Scene):
         pass
 
     def update(self):
-        self.all_sprites.update()
+        self.extra_sprites.update()
 
     def draw(self, screen):
-        self.all_sprites.draw(screen)
+        self.extra_sprites.draw(screen)
         self.draw_extra(screen)
 
     def run(self):

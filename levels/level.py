@@ -107,10 +107,11 @@ class Level(Scene):
     def lost_a_life(self, collided_item):
         print "you lost a life"
         self.friend_sprites.remove(self.battleship)
+        self.friend_sprites.remove(self.friend_bullets)
         self.explosions.add(ExplosionOne(collided_item).explosion)
         self.game_data.lives.live_subtract()
 
         if self.game_data.lives.get_lives() < 0:
             self.game_over = True
         else:
-            self.initialize_scene()
+            self.initialize_sprites()
