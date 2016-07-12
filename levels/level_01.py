@@ -63,7 +63,7 @@ class Level01(Level):
         self.wait_until_no_enemies_on_stage()
 
         # mothership
-        mothership_one = MothershipOne(self.enemy_bullets)
+        mothership_one = MothershipOne(self.enemy_bullets, self.non_sprites)
         self.enemy_sprites.add(mothership_one.mothership)
 
         # wait until stage cleared

@@ -3,14 +3,19 @@ from sprites.bullet import Bullet
 from sprites.sprite import Sprite
 from sprites.sprite_data import SpriteData
 from random import randint
+from non_sprite.progress_bar import ProgressBar
 
 
 class Mothership(Sprite):
     mothership_bullets = None
 
-    def __init__(self, mothership_data, mothership_bullets):
+    def __init__(self, mothership_data, mothership_bullets, non_sprites):
         super(Mothership, self).__init__(mothership_data)
         self.mothership_bullets = mothership_bullets
+        self.non_sprites = non_sprites
+
+        self.health_progress = ProgressBar(10, self.rect, 15)
+        self.non_sprites.append(self.health_progress)
 
     def fire(self):
         bullet_data = SpriteData(
@@ -33,11 +38,17 @@ class Mothership(Sprite):
         self.rect.x += self.sprite_data.x_step
         self.bounce_x()
 
+        self.health_progress.update_data(self.sprite_data.health)
+        self.health_progress.update_position(self.rect)
+
+        if self.sprite_data.health == 0:
+            self.non_sprites.remove(self.health_progress)
+
 
 class MothershipOne(object):
     mothership = None
 
-    def __init__(self, mothership_bullets):
+    def __init__(self, mothership_bullets, non_spites):
         super(MothershipOne, self).__init__()
 
         mothership_data = SpriteData(
@@ -49,5 +60,5 @@ class MothershipOne(object):
             health=5
         )
 
-        self.mothership = Mothership(mothership_data, mothership_bullets)
+        self.mothership = Mothership(mothership_data, mothership_bullets, non_spites)
 

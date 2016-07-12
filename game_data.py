@@ -68,7 +68,7 @@ class Score(object):
         try:
             self.load_from_disk()
         except IOError:
-            self.save_to_disk(0)
+            self.save_to_disk()
 
     def modify_score(self, amount, increase=True):
         if increase:

@@ -14,6 +14,9 @@ class Level(Scene):
     explosions = None
     battleship = None
 
+    non_interactive_sprites = None
+    non_sprites = None
+
     game_over = False
 
     def __init__(self, game_data):
@@ -30,6 +33,9 @@ class Level(Scene):
         self.friend_sprites.update()
         self.friend_bullets.update()
 
+        self.non_interactive_sprites.update()
+        # [non_sprite.update() for non_sprite in self.non_sprites]
+
         self.explosions.update()
 
     def draw(self, screen):
@@ -41,6 +47,9 @@ class Level(Scene):
         self.friend_sprites.draw(screen)
         self.friend_bullets.draw(screen)
 
+        self.non_interactive_sprites.draw(screen)
+        [non_sprite.draw(screen) for non_sprite in self.non_sprites]
+
         self.explosions.draw(screen)
 
     def initialize_scene(self):
@@ -49,6 +58,9 @@ class Level(Scene):
 
         self.friend_sprites = pygame.sprite.Group()
         self.friend_bullets = pygame.sprite.Group()
+
+        self.non_interactive_sprites = pygame.sprite.Group()
+        self.non_sprites = []
 
         self.explosions = pygame.sprite.Group()
         self.background = pygame.sprite.Group()
@@ -102,6 +114,7 @@ class Level(Scene):
                 collided_item.sprite_data.health -= 1
 
                 if collided_item.sprite_data.health == 0:
+                    collided_item.update()
                     self.enemy_sprites.remove(collided_item)
                     self.game_data.score.modify_score(10)
 
