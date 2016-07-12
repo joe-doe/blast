@@ -8,6 +8,7 @@ import time
 
 class Enemy(Sprite):
     enemy_bullets = None
+    health = 0
 
     def __init__(self, enemy_data, enemy_bullets):
         super(Enemy, self).__init__(enemy_data)

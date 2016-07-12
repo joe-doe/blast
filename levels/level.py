@@ -1,3 +1,4 @@
+import time
 import pygame
 from scenes.scene import Scene
 from sprites.explosions.explosion import ExplosionOne
@@ -30,9 +31,6 @@ class Level(Scene):
         self.friend_bullets.update()
 
         self.explosions.update()
-
-        if self.game_data.score.total == 100:
-            self.load_next_scene = True
 
     def draw(self, screen):
         self.background.draw(screen)
@@ -99,10 +97,13 @@ class Level(Scene):
             collided_item = pygame.sprite.spritecollideany(bullet,
                                                            self.enemy_sprites)
             if collided_item:
-                self.enemy_sprites.remove(collided_item)
                 self.friend_bullets.remove(bullet)
                 self.explosions.add(ExplosionOne(collided_item).explosion)
-                self.game_data.score.modify_score(10)
+                collided_item.sprite_data.health -= 1
+
+                if collided_item.sprite_data.health == 0:
+                    self.enemy_sprites.remove(collided_item)
+                    self.game_data.score.modify_score(10)
 
     def lost_a_life(self, collided_item):
         print "you lost a life"
@@ -115,3 +116,7 @@ class Level(Scene):
             self.game_over = True
         else:
             self.initialize_sprites()
+
+    def wait_until_no_enemies_on_stage(self, interval=2):
+        while self.enemy_sprites.sprites():
+            time.sleep(interval)

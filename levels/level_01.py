@@ -5,6 +5,7 @@ from sprites.battleship import BattleshipOne
 from sprites.background import Background
 from sprites.enemies.enemy import EnemySetOne, EnemySetTwo
 from sprites.sprite_data import SpriteData
+from sprites.enemies.mothership import MothershipOne
 
 
 class Level01(Level):
@@ -32,8 +33,7 @@ class Level01(Level):
         self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
 
         # wait until stage cleared
-        while self.enemy_sprites.sprites():
-            time.sleep(2)
+        self.wait_until_no_enemies_on_stage()
 
         # enemy set one
         enemy_set_one = EnemySetOne(how_many=4,
@@ -43,8 +43,7 @@ class Level01(Level):
         enemy_set_one.start_movement()
 
         # wait until stage cleared
-        while self.enemy_sprites.sprites():
-            time.sleep(2)
+        self.wait_until_no_enemies_on_stage()
 
         # enemy set two
         enemy_set_two = EnemySetTwo(how_many=4,
@@ -54,15 +53,20 @@ class Level01(Level):
         enemy_set_two.start_movement()
 
         # wait until stage cleared
-        while self.enemy_sprites.sprites():
-            time.sleep(2)
+        self.wait_until_no_enemies_on_stage()
 
         # asteroid belt
         asteroid_belt_one = AsteroidBeltOne(how_many=10)
         self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
 
         # wait until stage cleared
-        while self.enemy_sprites.sprites():
-            time.sleep(2)
+        self.wait_until_no_enemies_on_stage()
+
+        # mothership
+        mothership_one = MothershipOne(self.enemy_bullets)
+        self.enemy_sprites.add(mothership_one.mothership)
+
+        # wait until stage cleared
+        self.wait_until_no_enemies_on_stage()
 
         self.load_next_scene = True
