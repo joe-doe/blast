@@ -57,7 +57,7 @@ class MothershipOne(object):
             y_step=2,
             y_start=-250,
             should_fire=True,
-            health=5
+            health=15
         )
 
         self.mothership = Mothership(mothership_data, mothership_bullets, non_spites)

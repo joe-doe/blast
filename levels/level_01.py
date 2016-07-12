@@ -29,14 +29,14 @@ class Level01(Level):
         time.sleep(1)
 
         # asteroid belt
-        asteroid_belt_one = AsteroidBeltOne(how_many=5)
+        asteroid_belt_one = AsteroidBeltOne(how_many=15)
         self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
 
         # wait until stage cleared
         self.wait_until_no_enemies_on_stage()
 
         # enemy set one
-        enemy_set_one = EnemySetOne(how_many=4,
+        enemy_set_one = EnemySetOne(how_many=10,
                                     start_here=100,
                                     enemy_bullets=self.enemy_bullets)
         self.enemy_sprites.add(enemy_set_one.get_enemy_set())
@@ -46,7 +46,7 @@ class Level01(Level):
         self.wait_until_no_enemies_on_stage()
 
         # enemy set two
-        enemy_set_two = EnemySetTwo(how_many=4,
+        enemy_set_two = EnemySetTwo(how_many=14,
                                     start_here=500,
                                     enemy_bullets=self.enemy_bullets)
         self.enemy_sprites.add(enemy_set_two.get_enemy_set())

@@ -116,7 +116,7 @@ class EnemySetOne(EnemySet):
                 enemy_data = SpriteData(
                     image_path='resources/enemies/enemy_one.png',
                     x_start=self.start_here,
-                    y_step=2
+                    y_step=4
                 )
                 self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
 
