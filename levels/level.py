@@ -96,12 +96,14 @@ class Level(Scene):
         collided_sprite = pygame.sprite.spritecollideany(self.battleship,
                                                          self.enemy_sprites)
         if collided_sprite:
+            self.enemy_sprites.remove(collided_sprite)
             self.lost_a_life(collided_sprite)
 
         # enemy bullet hit battleship
         collided_bullet = pygame.sprite.spritecollideany(self.battleship,
                                                          self.enemy_bullets)
         if collided_bullet:
+            self.enemy_bullets.remove(collided_bullet)
             self.lost_a_life(collided_bullet)
 
         # battleship bullet
