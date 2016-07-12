@@ -1,0 +1,53 @@
+from constants import *
+from sprites.bullet import Bullet
+from sprites.sprite import Sprite
+from sprites.sprite_data import SpriteData
+from random import randint
+
+
+class Mothership(Sprite):
+    mothership_bullets = None
+
+    def __init__(self, mothership_data, mothership_bullets):
+        super(Mothership, self).__init__(mothership_data)
+        self.mothership_bullets = mothership_bullets
+
+    def fire(self):
+        bullet_data = SpriteData(
+            image_path='resources/spaceship/enemy_bullet.png',
+            x_step=0,
+            y_step=8,
+            pos_relative_to=self.rect
+        )
+        self.mothership_bullets.add(Bullet(bullet_data))
+
+    def update(self):
+        super(Mothership, self).update()
+
+        if self.sprite_data.should_fire:
+            if randint(0, 100) < 2:
+                self.fire()
+
+        if self.rect.y < 10:
+            self.rect.y += self.sprite_data.y_step
+        self.rect.x += self.sprite_data.x_step
+        self.bounce_x()
+
+
+class MothershipOne(object):
+    mothership = None
+
+    def __init__(self, mothership_bullets):
+        super(MothershipOne, self).__init__()
+
+        mothership_data = SpriteData(
+            image_path='resources/enemies/mothership_one.png',
+            x_step=2,
+            y_step=2,
+            y_start=-250,
+            should_fire=True,
+            health=5
+        )
+
+        self.mothership = Mothership(mothership_data, mothership_bullets)
+
