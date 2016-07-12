@@ -18,8 +18,8 @@ class Asteroid(AnimatedSprite):
     def initialize_sprite(self):
         self.rect.x = uniform(0, WINDOW_WIDTH-self.rect.w)
         self.rect.y = uniform(-50, 0)
-        self.sprite_data.x_step = uniform(1, 2)
-        self.sprite_data.y_step = uniform(1, 2)
+        self.sprite_data.x_step = uniform(-2, 2)
+        self.sprite_data.y_step = uniform(1, 5)
 
         self.sprite_data.x_direction = randint(0, 1)
 
