@@ -44,9 +44,26 @@ class Sprite(pygame.sprite.Sprite):
         else:
             self.rect.y += self.sprite_data.y_step
 
+    def bounce_x(self):
+        if self.rect.x <= 0:
+            self.sprite_data.x_step = -self.sprite_data.x_step
+
+        if self.rect.x >= WINDOW_WIDTH - self.rect.w:
+            self.sprite_data.x_step = -self.sprite_data.x_step
+
+        self.rect.x += self.sprite_data.x_step
+
+    def bounce_y(self):
+        if self.rect.y <= 0:
+            self.sprite_data.y_step = -self.sprite_data.y_step
+
+        if self.rect.y >= WINDOW_HEIGHT - self.rect.h:
+            self.sprite_data.y_step = -self.sprite_data.y_step
+        self.rect.y += self.sprite_data.y_step
+
     def update(self):
-        if self.rect.x <= - self.rect.w \
-                or self.rect.x >= WINDOW_WIDTH \
-                or self.rect.y <= - self.rect.h \
-                or self.rect.y >= WINDOW_HEIGHT + self.rect.h:
+        if self.rect.x <= - self.rect.w - 1\
+                or self.rect.x >= WINDOW_WIDTH + 1 \
+                or self.rect.y <= - self.rect.h - 1\
+                or self.rect.y >= WINDOW_HEIGHT + self.rect.h + 1:
             self.sprite_data.out_of_bounds = True

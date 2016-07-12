@@ -1,6 +1,5 @@
 from constants import *
 from sprite import Sprite
-import time
 
 
 class AnimatedSprite(Sprite):
@@ -27,22 +26,6 @@ class AnimatedSprite(Sprite):
                 self.current_image_idx += 1
         else:
             self.current_image_idx += 1
-
-    def bounce(self):
-        if self.rect.x <= 0:
-            self.sprite_data.x_step = -self.sprite_data.x_step
-
-        if self.rect.x >= WINDOW_WIDTH - self.rect.w:
-            self.sprite_data.x_step = -self.sprite_data.x_step
-
-        self.rect.x += self.sprite_data.x_step
-
-        if self.rect.y <= 0:
-            self.sprite_data.y_step = -self.sprite_data.y_step
-
-        if self.rect.y >= WINDOW_HEIGHT - self.rect.h:
-            self.sprite_data.y_step = -self.sprite_data.y_step
-        self.rect.y += self.sprite_data.y_step
 
 
 class AnimatedControlledSprite(Sprite):
