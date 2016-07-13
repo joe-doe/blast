@@ -21,7 +21,8 @@ class Level01(Level):
         )
         self.background.add(Background(background_data))
 
-    def initialize_sprites(self):
+    def initialize_sprites(self, sleep=0):
+        time.sleep(sleep)
         self.battleship = BattleshipOne(self.friend_bullets).battleship
         self.friend_sprites.add(self.battleship)
 

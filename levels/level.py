@@ -1,3 +1,4 @@
+import thread
 import time
 import pygame
 from scenes.scene import Scene
@@ -97,6 +98,7 @@ class Level(Scene):
                                                          self.enemy_sprites)
         if collided_sprite:
             self.enemy_sprites.remove(collided_sprite)
+            self.explosions.add(ExplosionOne(collided_sprite).explosion)
             self.lost_a_life(collided_sprite)
 
         # enemy bullet hit battleship
@@ -104,6 +106,7 @@ class Level(Scene):
                                                          self.enemy_bullets)
         if collided_bullet:
             self.enemy_bullets.remove(collided_bullet)
+            self.explosions.add(ExplosionOne(collided_bullet).explosion)
             self.lost_a_life(collided_bullet)
 
         # battleship bullet
@@ -130,7 +133,7 @@ class Level(Scene):
         if self.game_data.lives.get_lives() < 0:
             self.game_over = True
         else:
-            self.initialize_sprites()
+            thread.start_new_thread(self.initialize_sprites, (2, ))
 
     def wait_until_no_enemies_on_stage(self, interval=2):
         while self.enemy_sprites.sprites():

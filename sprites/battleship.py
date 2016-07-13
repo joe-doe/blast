@@ -42,7 +42,9 @@ class BattleshipOne(object):
             ),
             x_step=6,
             y_step=6,
-            starting_image='/04.png'
+            starting_image='/04.png',
+            x_start=380,
+            y_start=500
         )
 
         self.battleship = Battleship(battleship_data, friend_bullets)
