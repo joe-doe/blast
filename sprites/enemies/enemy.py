@@ -1,3 +1,5 @@
+import thread
+
 from constants import *
 from sprites.bullet import Bullet
 from sprites.sprite import Sprite
@@ -71,8 +73,28 @@ class EnemySet(object):
 
     def get_enemy_set(self):
         for enemy in self.enemy_set:
-            time.sleep(0.5)
+            # time.sleep(0.5)
             yield enemy
+
+    def go_right(self, speed=0, sleep_time=1):
+        thread.start_new_thread(self.turn_right, (speed, ))
+        delay = float(sleep_time)/self.how_many*speed
+        time.sleep(delay)
+
+    def go_left(self, speed=0, sleep_time=1):
+        thread.start_new_thread(self.turn_left, (speed, ))
+        delay = float(sleep_time)/self.how_many*speed
+        time.sleep(delay)
+
+    def go_down(self, speed=0, sleep_time=1):
+        thread.start_new_thread(self.speed_up, (speed, ))
+        delay = float(sleep_time)/self.how_many*speed
+        time.sleep(delay)
+
+    def go_up(self, speed=0, sleep_time=1):
+        thread.start_new_thread(self.slow_down, (speed, ))
+        delay = float(sleep_time)/self.how_many*speed
+        time.sleep(delay)
 
     def turn_right(self, speed=0):
         for enemy in self.enemy_set:
@@ -116,21 +138,18 @@ class EnemySetOne(EnemySet):
                 enemy_data = SpriteData(
                     image_path='resources/enemies/enemy_one.png',
                     x_start=self.start_here,
-                    y_step=4
+                    y_start=-80,
+                    y_step=0
                 )
                 self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
 
         def start_movement(self):
-            time.sleep(.7)
+            print "enter start_movement"
+            time.sleep(1)
 
-            self.turn_right(5)
-            time.sleep(.3)
-
-            self.turn_left(8)
-            time.sleep(.5)
-
-            self.turn_right(3)
-            self.speed_up(4)
+            self.go_down(speed=4, sleep_time=3)
+            self.go_right(speed=7, sleep_time=5)
+            self.go_left(speed=7, sleep_time=2)
 
 
 class EnemySetTwo(EnemySet):
@@ -142,7 +161,7 @@ class EnemySetTwo(EnemySet):
                 enemy_data = SpriteData(
                     image_path='resources/enemies/enemy_two.png',
                     x_start=self.start_here,
-                    y_step=3,
+                    y_step=0,
                     should_fire=True
                 )
                 self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
@@ -150,16 +169,9 @@ class EnemySetTwo(EnemySet):
         def start_movement(self):
             time.sleep(1)
 
-            self.turn_left(8)
-            time.sleep(.5)
-
-            self.turn_right(8)
-            time.sleep(.3)
-
-            self.slow_down(6)
-            time.sleep(1.8)
-
-            self.turn_right(8)
-            self.speed_up(8)
-            time.sleep(3)
-
+            self.go_down(speed=4, sleep_time=3)
+            self.go_left(speed=8, sleep_time=3)
+            self.go_right(speed=8, sleep_time=4)
+            self.go_up(speed=6, sleep_time=5)
+            self.go_right(speed=8, sleep_time=2)
+            self.go_up(speed=8, sleep_time=4)

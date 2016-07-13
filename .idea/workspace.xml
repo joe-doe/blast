@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d223d544-b43c-49af-834f-0719f6768840" name="Default" comment="" />
+    <list default="true" id="d223d544-b43c-49af-834f-0719f6768840" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/levels/level_01.py" afterPath="$PROJECT_DIR$/levels/level_01.py" />
+    </list>
     <ignored path="pyg.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,7 +53,7 @@
             <entry file="file://$PROJECT_DIR$/levels/level.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="875">
-                  <caret line="116" column="42" selection-start-line="116" selection-start-column="42" selection-end-line="116" selection-end-column="42" />
+                  <caret line="118" column="42" selection-start-line="118" selection-start-column="42" selection-end-line="118" selection-end-column="42" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
                   </folding>
@@ -64,18 +66,35 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="180">
                   <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-                  <folding />
+                  <folding>
+                    <marker date="1468328715806" expanded="true" signature="24:199" ph="..." />
+                    <marker date="1468328715806" expanded="true" signature="68:110" ph="..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="progress_bar.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="level_01.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/levels/level_01.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="324">
+                  <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#11#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="progress_bar.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/non_sprite/progress_bar.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="537">
                   <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
                   <folding>
-                    <element signature="e#0#13#0" expanded="true" />
+                    <marker date="1468332535082" expanded="true" signature="0:46" ph="import ..." />
+                    <marker date="1468332535082" expanded="true" signature="78:894" ph="..." />
+                    <marker date="1468332535082" expanded="true" signature="805:894" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -110,34 +129,10 @@
           <file leaf-file-name="bullet.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sprites/bullet.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
+                <state relative-caret-position="198">
                   <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
                   <folding>
                     <element signature="e#0#25#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="level_01.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/levels/level_01.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-144">
-                  <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="62" selection-end-column="45" />
-                  <folding>
-                    <element signature="e#0#11#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="level_02.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/levels/level_02.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="758">
-                  <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-                  <folding>
-                    <element signature="e#0#11#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -155,12 +150,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="enemy.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="enemy.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sprites/enemies/enemy.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-                  <folding />
+                <state relative-caret-position="357">
+                  <caret line="165" column="17" selection-start-line="165" selection-start-column="17" selection-end-line="165" selection-end-column="17" />
+                  <folding>
+                    <element signature="e#0#13#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -169,7 +166,7 @@
             <entry file="file://$PROJECT_DIR$/sprites/enemies/mothership.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="447">
-                  <caret line="41" column="54" selection-start-line="41" selection-start-column="54" selection-end-line="41" selection-end-column="54" />
+                  <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#23#0" expanded="true" />
                   </folding>
@@ -246,7 +243,6 @@
         <option value="$PROJECT_DIR$/sprites/bullet.py" />
         <option value="$PROJECT_DIR$/sprites/battleship.py" />
         <option value="$PROJECT_DIR$/sprites/animated_sprite.py" />
-        <option value="$PROJECT_DIR$/sprites/enemies/enemy.py" />
         <option value="$PROJECT_DIR$/sprites/sprite_data.py" />
         <option value="$PROJECT_DIR$/game.py" />
         <option value="$PROJECT_DIR$/game_data.py" />
@@ -256,6 +252,7 @@
         <option value="$PROJECT_DIR$/levels/level.py" />
         <option value="$PROJECT_DIR$/sprites/enemies/mothership.py" />
         <option value="$PROJECT_DIR$/non_sprite/progress_bar.py" />
+        <option value="$PROJECT_DIR$/sprites/enemies/enemy.py" />
         <option value="$PROJECT_DIR$/levels/level_01.py" />
       </list>
     </option>
@@ -604,7 +601,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="96" />
+      <option name="time" value="98" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -712,14 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sprites/enemies/enemy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sprites/battleship.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="590">
@@ -748,16 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/levels/level_02.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
-          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2016.1/system/python_stubs/421930287/pygame/draw.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -780,16 +759,6 @@
           <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sprites/bullet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -854,14 +823,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding />
+          <folding>
+            <marker date="1468328715806" expanded="true" signature="24:199" ph="..." />
+            <marker date="1468328715806" expanded="true" signature="68:110" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/levels/level.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="875">
-          <caret line="116" column="42" selection-start-line="116" selection-start-column="42" selection-end-line="116" selection-end-column="42" />
+          <caret line="118" column="42" selection-start-line="118" selection-start-column="42" selection-end-line="118" selection-end-column="42" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -871,7 +843,7 @@
     <entry file="file://$PROJECT_DIR$/sprites/enemies/mothership.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
-          <caret line="41" column="54" selection-start-line="41" selection-start-column="54" selection-end-line="41" selection-end-column="54" />
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -883,6 +855,38 @@
         <state relative-caret-position="537">
           <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
           <folding>
+            <marker date="1468332535082" expanded="true" signature="0:46" ph="import ..." />
+            <marker date="1468332535082" expanded="true" signature="78:894" ph="..." />
+            <marker date="1468332535082" expanded="true" signature="805:894" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/levels/level_02.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="758">
+          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sprites/bullet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sprites/enemies/enemy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="165" column="17" selection-start-line="165" selection-start-column="17" selection-end-line="165" selection-end-column="17" />
+          <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
@@ -890,8 +894,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/levels/level_01.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="62" selection-end-column="45" />
+        <state relative-caret-position="324">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
