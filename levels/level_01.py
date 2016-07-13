@@ -21,9 +21,21 @@ class Level01(Level):
         )
         self.background.add(Background(background_data))
 
-    def initialize_sprites(self, sleep=0):
-        time.sleep(sleep)
+    def initialize_sprites(self):
         self.battleship = BattleshipOne(self.friend_bullets).battleship
+        self.friend_sprites.add(self.battleship)
+
+    def resurrect_battleship(self):
+        time.sleep(.7)
+
+        # grace period upon resurrection
+        for i in range(8):
+            self.non_interactive_sprites.add(self.battleship)
+            time.sleep(.2)
+            self.non_interactive_sprites.empty()
+            time.sleep(.2)
+
+        # grace period ended
         self.friend_sprites.add(self.battleship)
 
     def run(self):

@@ -114,15 +114,15 @@ class Game(object):
             # update level
             self.scene.update()
 
-            # clear up the dead
-            if isinstance(self.scene, Level):
-                self.scene.clear_the_dead()
-
             # blit everything
             self.scene.draw(self.screen)
 
             # update score
             self.game_data.update()
+
+            # clear up the dead
+            if isinstance(self.scene, Level):
+                self.scene.clear_the_dead()
 
             pygame.display.flip()
             self.clock.tick(FPS)

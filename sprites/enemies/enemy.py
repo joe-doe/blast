@@ -144,9 +144,6 @@ class EnemySetOne(EnemySet):
                 self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
 
         def start_movement(self):
-            print "enter start_movement"
-            time.sleep(1)
-
             self.go_down(speed=4, sleep_time=3)
             self.go_right(speed=7, sleep_time=5)
             self.go_left(speed=7, sleep_time=2)
@@ -161,14 +158,13 @@ class EnemySetTwo(EnemySet):
                 enemy_data = SpriteData(
                     image_path='resources/enemies/enemy_two.png',
                     x_start=self.start_here,
+                    y_start=-95,
                     y_step=0,
                     should_fire=True
                 )
                 self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
 
         def start_movement(self):
-            time.sleep(1)
-
             self.go_down(speed=4, sleep_time=3)
             self.go_left(speed=8, sleep_time=3)
             self.go_right(speed=8, sleep_time=4)

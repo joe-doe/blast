@@ -23,10 +23,9 @@ class Scene(threading.Thread):
         """
         pass
 
-    def initialize_sprites(self, sleep):
+    def initialize_sprites(self):
         """
         Must override in derived classes
-        Optionally add sleep time before initialization
         """
         pass
 
