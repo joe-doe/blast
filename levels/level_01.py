@@ -6,6 +6,7 @@ from sprites.background import Background
 from sprites.enemies.enemy import EnemySetOne, EnemySetTwo
 from sprites.sprite_data import SpriteData
 from sprites.enemies.mothership import MothershipOne
+from sprites.bullet import BulletTwo
 
 
 class Level01(Level):
@@ -28,6 +29,7 @@ class Level01(Level):
     def resurrect_battleship(self):
         time.sleep(.7)
 
+        self.battleship.set_weapon(BulletTwo(self.battleship))
         # grace period upon resurrection
         for i in range(8):
             self.non_interactive_sprites.add(self.battleship)
