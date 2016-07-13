@@ -91,19 +91,43 @@ class Level(Scene):
         self.battleship.go_down()
 
     def clear_the_dead(self):
-        battleship = None
-        for sprite in self.friend_sprites.sprites():
-            if isinstance(sprite, Battleship):
-                battleship = sprite
 
         # out of level
         for sprite in self.enemy_sprites:
             if sprite.sprite_data.out_of_bounds is True:
                 self.enemy_sprites.remove(sprite)
 
+        for sprite in self.enemy_bullets:
+            if sprite.sprite_data.out_of_bounds is True:
+                self.enemy_bullets.remove(sprite)
+
         for sprite in self.friend_sprites:
             if sprite.sprite_data.out_of_bounds is True:
                 self.friend_sprites.remove(sprite)
+
+        for sprite in self.friend_bullets:
+            if sprite.sprite_data.out_of_bounds is True:
+                self.friend_bullets.remove(sprite)
+
+        # battleship bullet
+        # keeps killing even if battleship is in resurrection mode
+        for bullet in self.friend_bullets:
+            collided_item = pygame.sprite.spritecollideany(bullet,
+                                                           self.enemy_sprites)
+            if collided_item:
+                self.friend_bullets.remove(bullet)
+                self.explosions.add(ExplosionOne(collided_item).explosion)
+                collided_item.sprite_data.health -= 1
+
+                if collided_item.sprite_data.health == 0:
+                    collided_item.update()
+                    self.enemy_sprites.remove(collided_item)
+                    self.game_data.score.modify_score(10)
+
+        battleship = None
+        for sprite in self.friend_sprites.sprites():
+            if isinstance(sprite, Battleship):
+                battleship = sprite
 
         if battleship:
             # enemy sprite hit battleship
@@ -121,20 +145,6 @@ class Level(Scene):
                 self.lost_a_life()
                 self.enemy_bullets.remove(collided_bullet)
                 self.explosions.add(ExplosionOne(collided_bullet).explosion)
-
-            # battleship bullet
-            for bullet in self.friend_bullets:
-                collided_item = pygame.sprite.spritecollideany(bullet,
-                                                               self.enemy_sprites)
-                if collided_item:
-                    self.friend_bullets.remove(bullet)
-                    self.explosions.add(ExplosionOne(collided_item).explosion)
-                    collided_item.sprite_data.health -= 1
-
-                    if collided_item.sprite_data.health == 0:
-                        collided_item.update()
-                        self.enemy_sprites.remove(collided_item)
-                        self.game_data.score.modify_score(10)
 
     def lost_a_life(self):
         print "you lost a life"

@@ -1,5 +1,5 @@
 from constants import *
-from sprites.bullet import Bullet
+from sprites.weapon import WeaponOne
 from sprites.sprite import Sprite
 from sprites.sprite_data import SpriteData
 from random import randint
@@ -8,6 +8,7 @@ from non_sprite.progress_bar import ProgressBar
 
 class Mothership(Sprite):
     mothership_bullets = None
+    weapon = None
 
     def __init__(self, mothership_data, mothership_bullets, non_sprites):
         super(Mothership, self).__init__(mothership_data)
@@ -17,6 +18,8 @@ class Mothership(Sprite):
         self.health_progress = ProgressBar(10, self.rect, 15)
         self.non_sprites.append(self.health_progress)
 
+        self.weapon = WeaponOne(self)
+
     def fire(self):
         bullet_data = SpriteData(
             image_path='resources/spaceship/enemy_bullet.png',
@@ -24,7 +27,7 @@ class Mothership(Sprite):
             y_step=8,
             pos_relative_to=self.rect
         )
-        self.mothership_bullets.add(Bullet(bullet_data))
+        self.mothership_bullets.add(self.weapon.get_bullet())
 
     def update(self):
         super(Mothership, self).update()

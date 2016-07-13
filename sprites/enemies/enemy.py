@@ -1,7 +1,7 @@
 import thread
 
 from constants import *
-from sprites.bullet import Bullet
+from sprites.weapon import WeaponOne
 from sprites.sprite import Sprite
 from sprites.sprite_data import SpriteData
 from random import uniform, randint
@@ -11,10 +11,12 @@ import time
 class Enemy(Sprite):
     enemy_bullets = None
     health = 0
+    weapon = None
 
     def __init__(self, enemy_data, enemy_bullets):
         super(Enemy, self).__init__(enemy_data)
         self.enemy_bullets = enemy_bullets
+        self.weapon = WeaponOne(self)
 
     def fire(self):
         bullet_data = SpriteData(
@@ -23,7 +25,7 @@ class Enemy(Sprite):
             y_step=8,
             pos_relative_to=self.rect
         )
-        self.enemy_bullets.add(Bullet(bullet_data))
+        self.enemy_bullets.add(self.weapon.get_bullet())
 
     def update(self):
         super(Enemy, self).update()
