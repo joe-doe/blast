@@ -1,6 +1,5 @@
-import thread
-
 from constants import *
+from daemon_thread import DaemonThread
 from sprites.weapon import WeaponOne
 from sprites.sprite import Sprite
 from sprites.sprite_data import SpriteData
@@ -79,22 +78,22 @@ class EnemySet(object):
             yield enemy
 
     def go_right(self, speed=0, sleep_time=1):
-        thread.start_new_thread(self.turn_right, (speed, ))
+        DaemonThread(target=self.turn_right, args=(speed, )).start()
         delay = float(sleep_time)/self.how_many*speed
         time.sleep(delay)
 
     def go_left(self, speed=0, sleep_time=1):
-        thread.start_new_thread(self.turn_left, (speed, ))
+        DaemonThread(target=self.turn_left, args=(speed, )).start()
         delay = float(sleep_time)/self.how_many*speed
         time.sleep(delay)
 
     def go_down(self, speed=0, sleep_time=1):
-        thread.start_new_thread(self.speed_up, (speed, ))
+        DaemonThread(target=self.speed_up, args=(speed, )).start()
         delay = float(sleep_time)/self.how_many*speed
         time.sleep(delay)
 
     def go_up(self, speed=0, sleep_time=1):
-        thread.start_new_thread(self.slow_down, (speed, ))
+        DaemonThread(target=self.slow_down, args=(speed, )).start()
         delay = float(sleep_time)/self.how_many*speed
         time.sleep(delay)
 

@@ -1,9 +1,10 @@
-import thread
+import threading
 import time
 import pygame
 from scenes.scene import Scene
 from sprites.explosions.explosion import ExplosionOne
 from sprites.battleship import Battleship
+from daemon_thread import DaemonThread
 
 
 class Level(Scene):
@@ -154,7 +155,7 @@ class Level(Scene):
         if self.game_data.lives.get_lives() < 0:
             self.game_over = True
         else:
-            thread.start_new_thread(self.resurrect_battleship)
+            DaemonThread(target=self.resurrect_battleship).start()
 
     def wait_until_no_enemies_on_stage(self, interval=2):
         while self.enemy_sprites.sprites():
