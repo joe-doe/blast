@@ -62,3 +62,23 @@ class WeaponTwo(object):
         bullets.append(new_bullet)
 
         return bullets
+
+
+class EnemyWeaponOne(object):
+    igniter = None
+
+    def __init__(self, igniter):
+        super(EnemyWeaponOne, self).__init__()
+        self.igniter = igniter
+
+    def get_bullet(self):
+        bullet_one_data = SpriteData(
+            image_path='resources/spaceship/enemy_bullet.png',
+            x_step=0,
+            y_step=8,
+            pos_relative_to=self.igniter.rect
+        )
+        bullet = Bullet(bullet_one_data)
+        bullet.rect.x = bullet.sprite_data.pos_relative_to.centerx - (bullet.rect.w / 2)
+        bullet.rect.y = bullet.sprite_data.pos_relative_to.centery - bullet.rect.h - 5
+        return bullet

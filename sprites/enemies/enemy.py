@@ -1,6 +1,6 @@
 from constants import *
 from daemon_thread import DaemonThread
-from sprites.weapon import WeaponOne
+from sprites.weapon import EnemyWeaponOne, WeaponOne
 from sprites.sprite import Sprite
 from sprites.sprite_data import SpriteData
 from random import uniform, randint
@@ -12,19 +12,18 @@ class Enemy(Sprite):
     health = 0
     weapon = None
 
-    def __init__(self, enemy_data, enemy_bullets):
+    # need to pass class for weapon because Weapon needs igniter
+    def __init__(self, enemy_data, enemy_bullets, Weapon):
         super(Enemy, self).__init__(enemy_data)
         self.enemy_bullets = enemy_bullets
-        self.weapon = WeaponOne(self)
+        if Weapon:
+            self.weapon = Weapon(self)
 
     def fire(self):
-        bullet_data = SpriteData(
-            image_path='resources/spaceship/enemy_bullet.png',
-            x_step=0,
-            y_step=8,
-            pos_relative_to=self.rect
-        )
         self.enemy_bullets.add(self.weapon.get_bullet())
+
+    def set_weapon(self, Weapon):
+        self.weapon = Weapon(self)
 
     def update(self):
         super(Enemy, self).update()
@@ -48,7 +47,7 @@ class EnemyOne(object):
             y_step=4
         )
 
-        self.enemy = Enemy(enemy_data, enemy_bullets)
+        self.enemy = Enemy(enemy_data, enemy_bullets, EnemyWeaponOne)
 
 
 class EnemySet(object):
@@ -142,7 +141,9 @@ class EnemySetOne(EnemySet):
                     y_start=-80,
                     y_step=0
                 )
-                self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
+                self.enemy_set.append(Enemy(enemy_data,
+                                            self.enemy_bullets,
+                                            None))
 
         def start_movement(self):
             self.go_down(speed=4, sleep_time=3)
@@ -163,7 +164,9 @@ class EnemySetTwo(EnemySet):
                     y_step=0,
                     should_fire=True
                 )
-                self.enemy_set.append(Enemy(enemy_data, self.enemy_bullets))
+                self.enemy_set.append(Enemy(enemy_data,
+                                            self.enemy_bullets,
+                                            EnemyWeaponOne))
 
         def start_movement(self):
             self.go_down(speed=4, sleep_time=3)
