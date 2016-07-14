@@ -2,6 +2,7 @@ from scenes.scene import Scene
 from sprites.background import Background
 from sprites.sprite_data import SpriteData
 from constants import *
+from sprites.logo import IntroLogo
 
 
 class Intro(Scene):
@@ -15,6 +16,7 @@ class Intro(Scene):
             y_step=1
         )
         self.extra_sprites.add(Background(background_data))
+        self.extra_sprites.add(IntroLogo().logo)
 
     def initialize_sprites(self):
         pass
@@ -26,7 +28,7 @@ class Intro(Scene):
         self.extra_sprites.draw(screen)
         self.print_out(screen=screen,
                        string='Press 1 to start',
-                       position='center',
+                       position='bottom-center',
                        size=50,
                        color=RED)
 
