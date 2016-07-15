@@ -1,6 +1,5 @@
 from scenes.scene import Scene
-from sprites.background import Background
-from sprites.sprite_data import SpriteData
+from sprites.background import BackgroundOne
 from constants import *
 from sprites.logo import IntroLogo
 
@@ -11,12 +10,8 @@ class Intro(Scene):
         super(Intro, self).__init__()
 
     def initialize_background(self):
-        background_data = SpriteData(
-            image_path='resources/L1_background_800x600.png',
-            y_step=1
-        )
-        self.extra_sprites.add(Background(background_data))
-        self.extra_sprites.add(IntroLogo().logo)
+        self.extra_sprites.add(BackgroundOne())
+        self.extra_sprites.add(IntroLogo())
 
     def initialize_sprites(self):
         pass

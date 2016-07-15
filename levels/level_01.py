@@ -2,11 +2,9 @@ import time
 from level import Level
 from sprites.asteroids.asteroid import AsteroidBeltOne
 from sprites.battleship import BattleshipOne
-from sprites.background import Background
+from sprites.background import BackgroundOne
 from sprites.enemies.enemy import EnemySetOne, EnemySetTwo
-from sprites.sprite_data import SpriteData
 from sprites.enemies.mothership import MothershipOne
-from sprites.weapon import WeaponTwo
 
 
 class Level01(Level):
@@ -16,20 +14,15 @@ class Level01(Level):
         print "Level 01 Started"
 
     def initialize_background(self):
-        background_data = SpriteData(
-            image_path='resources/L1_background_800x600.png',
-            y_step=1
-        )
-        self.background.add(Background(background_data))
+        self.background.add(BackgroundOne())
 
     def initialize_sprites(self):
-        self.battleship = BattleshipOne(self.friend_bullets).battleship
+        self.battleship = BattleshipOne(self.friend_bullets)
         self.friend_sprites.add(self.battleship)
 
     def resurrect_battleship(self):
         time.sleep(.7)
 
-        self.battleship.set_weapon(WeaponTwo(self.battleship))
         # grace period upon resurrection
         for i in range(8):
             self.non_interactive_sprites.add(self.battleship)

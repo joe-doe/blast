@@ -3,11 +3,13 @@ from sprite import Sprite
 
 
 class AnimatedSprite(Sprite):
-
+    """
+    subclasses should implement feed_data
+    """
     current_image_idx = 0
 
-    def __init__(self, animated_sprite_data):
-        super(AnimatedSprite, self).__init__(animated_sprite_data)
+    def __init__(self):
+        super(AnimatedSprite, self).__init__()
 
     def update(self):
         super(AnimatedSprite, self).update()
@@ -29,12 +31,13 @@ class AnimatedSprite(Sprite):
 
 
 class AnimatedControlledSprite(Sprite):
-
+    """
+    subclasses should implement feed_data
+    """
     current_image_idx = 0
 
-    def __init__(self, animated_controlled_sprite_data):
-        super(AnimatedControlledSprite, self).\
-            __init__(animated_controlled_sprite_data)
+    def __init__(self):
+        super(AnimatedControlledSprite, self).__init__()
 
     def update(self):
         super(AnimatedControlledSprite, self).update()

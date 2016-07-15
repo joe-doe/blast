@@ -7,18 +7,21 @@ class Sprite(pygame.sprite.Sprite):
     rect = None
     sprite_data = None
 
-    def __init__(self, sprite_data):
+    def __init__(self):
         super(Sprite, self).__init__()
-
-        self.image = pygame.image.load(sprite_data.image_path).convert_alpha()
-        self.rect = self.image.get_rect()
-        self.sprite_data = sprite_data
-
+        self.feed_data()
         self.initialize_sprite()
 
+    def feed_data(self):
+        pass
+
     def initialize_sprite(self):
-        self.rect.x = self.sprite_data.x_start
-        self.rect.y = self.sprite_data.y_start
+
+        self.image = pygame.image.load(self.sprite_data.image_path).convert_alpha()
+        self.rect = self.image.get_rect()
+
+        # self.rect.x = self.sprite_data.x_start
+        # self.rect.y = self.sprite_data.y_start
 
     def go_left(self, speed=0):
         if speed:

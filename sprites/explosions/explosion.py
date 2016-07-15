@@ -7,10 +7,15 @@ import sys
 
 class Explosion(AnimatedSprite):
 
-    def __init__(self, explosion_data):
-        super(Explosion, self).__init__(explosion_data)
+    collided_item = None
+
+    def __init__(self, collided_item):
+        self.collided_item = collided_item
+        super(Explosion, self).__init__()
 
     def initialize_sprite(self):
+        super(Explosion, self).initialize_sprite()
+
         self.rect.centerx = self.sprite_data.pos_relative_to.centerx
         self.rect.centery = self.sprite_data.pos_relative_to.centery
 
@@ -21,15 +26,12 @@ class Explosion(AnimatedSprite):
         self.rect.x += self.sprite_data.x_step
 
 
-class ExplosionOne(object):
-    explosion = None
+class ExplosionOne(Explosion):
 
-    def __init__(self, collided_item):
-        super(ExplosionOne, self).__init__()
+    def feed_data(self):
 
-        explosion_one_data = AnimatedSpriteData(
+        self.sprite_data = AnimatedSpriteData(
                     image_set_folder=os.path.join(sys.path[0],
                                                   'resources/explosions/a_1'),
-                    pos_relative_to=collided_item.rect
+                    pos_relative_to=self.collided_item.rect
                 )
-        self.explosion = Explosion(explosion_one_data)

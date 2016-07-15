@@ -1,6 +1,6 @@
 from constants import *
 from daemon_thread import DaemonThread
-from sprites.weapon import EnemyWeaponOne, WeaponOne
+from sprites.bullet import EnemyBulletOne, BulletOne
 from sprites.sprite import Sprite
 from sprites.sprite_data import SpriteData
 from random import uniform, randint
@@ -13,8 +13,8 @@ class Enemy(Sprite):
     weapon = None
 
     # need to pass class for weapon because Weapon needs igniter
-    def __init__(self, enemy_data, enemy_bullets, Weapon):
-        super(Enemy, self).__init__(enemy_data)
+    def __init__(self, enemy_bullets, Weapon):
+        super(Enemy, self).__init__()
         self.enemy_bullets = enemy_bullets
         if Weapon:
             self.weapon = Weapon(self)
@@ -47,7 +47,7 @@ class EnemyOne(object):
             y_step=4
         )
 
-        self.enemy = Enemy(enemy_data, enemy_bullets, EnemyWeaponOne)
+        self.enemy = Enemy(enemy_data, enemy_bullets, EnemyBulletOne)
 
 
 class EnemySet(object):
@@ -166,7 +166,7 @@ class EnemySetTwo(EnemySet):
                 )
                 self.enemy_set.append(Enemy(enemy_data,
                                             self.enemy_bullets,
-                                            EnemyWeaponOne))
+                                            EnemyBulletOne))
 
         def start_movement(self):
             self.go_down(speed=4, sleep_time=3)

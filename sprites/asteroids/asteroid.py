@@ -11,11 +11,15 @@ from sprites.sprite_data import AnimatedSpriteData
 
 
 class Asteroid(AnimatedSprite):
-
-    def __init__(self, asteroid_data):
-        super(Asteroid, self).__init__(asteroid_data)
+    """
+    subclasses should implement feed_data
+    """
+    def __init__(self):
+        super(Asteroid, self).__init__()
 
     def initialize_sprite(self):
+        super(Asteroid, self).initialize_sprite()
+
         self.rect.x = uniform(0, WINDOW_WIDTH-self.rect.w)
         self.rect.y = uniform(-50, 0)
         self.sprite_data.x_step = uniform(-2, 2)
@@ -30,20 +34,15 @@ class Asteroid(AnimatedSprite):
         self.rect.x += self.sprite_data.x_step
 
 
-class AsteroidAlpha(object):
+class AsteroidAlpha(Asteroid):
 
-    asteroid = None
-
-    def __init__(self):
-        super(AsteroidAlpha, self).__init__()
-
-        asteroid_data = AnimatedSpriteData(
+    def feed_data(self):
+        self.sprite_data = AnimatedSpriteData(
             image_set_folder=os.path.join(sys.path[0],
                                           'resources/asteroids/a_1'),
             loop_forever=True,
             y_step=2
         )
-        self.asteroid = Asteroid(asteroid_data)
 
 
 class AsteroidBelt(object):
@@ -72,8 +71,4 @@ class AsteroidBeltOne(AsteroidBelt):
 
         def initialize_set(self):
             for i in range(self.how_many):
-                asteroid_data = AnimatedSpriteData(
-                    image_set_folder='resources/asteroids/a_1',
-                    loop_forever=True
-                )
-                self.asteroid_set.append(Asteroid(asteroid_data))
+                self.asteroid_set.append(AsteroidAlpha())
