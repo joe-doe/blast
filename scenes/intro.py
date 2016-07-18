@@ -11,10 +11,9 @@ class Intro(Scene):
 
     def initialize_background(self):
         self.extra_sprites.add(BackgroundOne())
-        self.extra_sprites.add(IntroLogo())
 
     def initialize_sprites(self):
-        pass
+        self.extra_sprites.add(IntroLogo())
 
     def update(self):
         self.extra_sprites.update()
@@ -28,5 +27,5 @@ class Intro(Scene):
                        color=RED)
 
     def run(self):
-        # time line is not applicable here
         pass
+        # time line is not applicable here
