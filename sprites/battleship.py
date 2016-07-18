@@ -1,7 +1,7 @@
 from constants import *
 from sprites.animated_sprite import AnimatedControlledSprite
 from sprites.sprite_data import AnimatedSpriteData
-from sprites.bullet import BulletOne, BattleshipWeaponOne
+from sprites.bullet import BattleshipWeaponOne
 
 import os
 import sys
@@ -15,6 +15,7 @@ class Battleship(AnimatedControlledSprite):
     def __init__(self, friend_bullets):
         super(Battleship, self).__init__()
 
+        self.weapon = self.sprite_data.weapon
         self.friend_bullets = friend_bullets
 
     def initialize_sprite(self):
@@ -24,9 +25,7 @@ class Battleship(AnimatedControlledSprite):
         self.rect.y = WINDOW_HEIGHT - self.rect.h*3
 
     def fire(self):
-        if not self.weapon:
-            self.weapon = BattleshipWeaponOne(self)
-        self.friend_bullets.add(self.weapon.get_bullets())
+        self.friend_bullets.add(self.weapon.get_bullets(self))
 
     def set_weapon(self, new_weapon):
         self.weapon = new_weapon
@@ -52,5 +51,6 @@ class BattleshipOne(Battleship):
             ),
             x_step=6,
             y_step=6,
-            starting_image='/04.png'
+            starting_image='/04.png',
+            weapon=BattleshipWeaponOne()
         )

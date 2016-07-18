@@ -45,7 +45,6 @@ class Level01(Level):
 
         # enemy set one
         enemy_set_one = EnemySetOne(how_many=10,
-                                    start_here=100,
                                     enemy_bullets=self.enemy_bullets)
         self.enemy_sprites.add(enemy_set_one.get_enemy_set())
         enemy_set_one.start_movement()
@@ -55,7 +54,6 @@ class Level01(Level):
 
         # enemy set two
         enemy_set_two = EnemySetTwo(how_many=14,
-                                    start_here=500,
                                     enemy_bullets=self.enemy_bullets)
         self.enemy_sprites.add(enemy_set_two.get_enemy_set())
         enemy_set_two.start_movement()

@@ -15,6 +15,7 @@ class SpriteData(object):
     pos_relative_to = None
     should_fire = None
     health = None
+    weapon = None
 
     def __init__(self,
                  image_path=None,
@@ -26,7 +27,8 @@ class SpriteData(object):
                  out_of_bounds=False,
                  pos_relative_to=None,
                  should_fire=False,
-                 health=1):
+                 health=1,
+                 weapon=None):
         super(SpriteData, self).__init__()
 
         self.image_path = image_path
@@ -39,6 +41,7 @@ class SpriteData(object):
         self.pos_relative_to = pos_relative_to
         self.should_fire = should_fire
         self.health = health
+        self.weapon = weapon
 
     def set_image_path(self, image_path):
         self.image_path = image_path
@@ -75,6 +78,7 @@ class AnimatedSpriteData(SpriteData):
                  pos_relative_to=None,
                  should_fire=False,
                  health=1,
+                 weapon=None,
                  starting_image='/01.png'):
         super(AnimatedSpriteData, self).__init__(
             image_path=None,
@@ -86,7 +90,8 @@ class AnimatedSpriteData(SpriteData):
             out_of_bounds=out_of_bounds,
             pos_relative_to=pos_relative_to,
             should_fire=should_fire,
-            health=health
+            health=health,
+            weapon=weapon
         )
 
         self.image_set_folder = image_set_folder

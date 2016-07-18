@@ -6,8 +6,14 @@ class Bullet(Sprite):
     igniter = None
 
     def __init__(self, igniter):
-        self.igiter = igniter
+        self.igniter = igniter
         super(Bullet, self).__init__()
+
+    def initialize_sprite(self):
+        super(Bullet, self).initialize_sprite()
+
+        self.rect.centerx = self.igniter.rect.centerx
+        self.rect.centery = self.igniter.rect.centery - self.rect.h/2 - 20
 
     def update(self):
         super(Bullet, self).update()
@@ -38,40 +44,55 @@ class EnemyBulletOne(Bullet):
         )
 
 
+class EnemyBulletTwo(Bullet):
+
+    def feed_data(self):
+        self.sprite_data = SpriteData(
+            image_path='resources/spaceship/enemy_bullet.png',
+            x_step=0,
+            y_step=8,
+            pos_relative_to=self.igniter.rect
+        )
+
+
 # weapons
 class BattleshipWeaponOne(object):
-    bullets = None
-    igniter = None
 
-    def __init__(self, igniter):
-        super(BattleshipWeaponOne, self).__init__()
-
-        self.igniter = igniter
-        self.bullets = []
+    def get_bullets(self, igniter):
 
         bullet_one = BulletOne(igniter)
-        bullet_one.sprite_data.rect.x += 5
-        self.bullets.append(bullet_one)
 
-    def get_bullets(self):
-        return self.bullets
+        return bullet_one
 
 
 class BattleshipWeaponTwo(object):
-    bullets = None
 
-    def __init__(self, igniter):
-        super(BattleshipWeaponTwo, self).__init__()
-        self.igniter = igniter
-        self.bullets = []
+    def get_bullets(self, igniter):
+        bullets = []
 
         bullet_one = BulletOne(igniter)
         bullet_one.sprite_data.rect.x += 5
-        self.bullets.append(bullet_one)
+        bullets.append(bullet_one)
 
         bullet_two = BulletOne(igniter)
         bullet_two.sprite_data.rect.x += 5
-        self.bullets.append(bullet_two)
+        bullets.append(bullet_two)
 
-    def get_bullets(self):
-        return self.bullets
+        for bullet in bullets:
+            yield bullet
+
+
+class EnemyWeaponOne(object):
+
+    def get_bullets(self, igniter):
+
+        enemy_bullet_one = EnemyBulletOne(igniter)
+        return enemy_bullet_one
+
+
+class EnemyWeaponTwo(object):
+
+    def get_bullets(self, igniter):
+
+        enemy_bullet_two = EnemyBulletTwo(igniter)
+        return enemy_bullet_two

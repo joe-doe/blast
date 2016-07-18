@@ -15,13 +15,12 @@ class Level02(Level):
         self.background.add(BackgroundTwo())
 
     def initialize_sprites(self):
-        self.battleship = BattleshipOne(self.friend_bullets).battleship
+        self.battleship = BattleshipOne(self.friend_bullets)
         self.friend_sprites.add(self.battleship)
 
     def resurrect_battleship(self):
         time.sleep(.7)
 
-        self.battleship.set_weapon(WeaponTwo(self.battleship))
         # grace period upon resurrection
         for i in range(8):
             self.non_interactive_sprites.add(self.battleship)
@@ -36,7 +35,7 @@ class Level02(Level):
         time.sleep(1)
 
         # enemy set one
-        enemy_set_one = EnemySetOne(how_many=4, start_here=100)
+        enemy_set_one = EnemySetOne(how_many=4)
         self.enemy_sprites.add(enemy_set_one.get_enemy_set())
         enemy_set_one.start_movement()
 
@@ -53,7 +52,6 @@ class Level02(Level):
 
         # enemy set two
         enemy_set_two = EnemySetTwo(how_many=4,
-                                    start_here=500,
                                     enemy_bullets=self.enemy_bullets)
         self.enemy_sprites.add(enemy_set_two.get_enemy_set())
         enemy_set_two.start_movement()
