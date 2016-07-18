@@ -18,7 +18,7 @@ class PowerUp(AnimatedSprite):
         super(PowerUp, self).initialize_sprite()
 
         self.rect.x = uniform(0, WINDOW_WIDTH-self.rect.w)
-        self.rect.y = self.rect.h
+        self.rect.y = -self.rect.h
 
     def update(self):
         super(PowerUp, self).update()

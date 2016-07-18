@@ -71,15 +71,14 @@ class BattleshipWeaponTwo(object):
         bullets = []
 
         bullet_one = BulletOne(igniter)
-        bullet_one.sprite_data.rect.x += 5
+        bullet_one.rect.x += 10
         bullets.append(bullet_one)
 
         bullet_two = BulletOne(igniter)
-        bullet_two.sprite_data.rect.x += 5
+        bullet_two.rect.x -= 10
         bullets.append(bullet_two)
 
-        for bullet in bullets:
-            yield bullet
+        return bullets
 
 
 class EnemyWeaponOne(object):

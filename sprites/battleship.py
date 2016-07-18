@@ -1,7 +1,10 @@
 from constants import *
 from sprites.animated_sprite import AnimatedControlledSprite
 from sprites.sprite_data import AnimatedSpriteData
-from sprites.bullet import BattleshipWeaponOne
+from sprites.bullet import (
+    BattleshipWeaponOne,
+    BattleshipWeaponTwo
+)
 
 import os
 import sys
@@ -10,12 +13,16 @@ import sys
 class Battleship(AnimatedControlledSprite):
 
     friend_bullets = None
+    weapons = None
     weapon = None
+    weapon_selector = None
 
     def __init__(self, friend_bullets):
         super(Battleship, self).__init__()
 
-        self.weapon = self.sprite_data.weapon
+        self.weapons = self.sprite_data.weapon
+        self.weapon_selector = self.get_next_weapon()
+        self.weapon = self.weapon_selector.next()
         self.friend_bullets = friend_bullets
 
     def initialize_sprite(self):
@@ -27,9 +34,6 @@ class Battleship(AnimatedControlledSprite):
     def fire(self):
         self.friend_bullets.add(self.weapon.get_bullets(self))
 
-    def set_weapon(self, new_weapon):
-        self.weapon = new_weapon
-
     def update(self):
         # we do not want battleship out of bounds
         # if self.rect.y >= WINDOW_HEIGHT-self.rect.h:
@@ -37,8 +41,14 @@ class Battleship(AnimatedControlledSprite):
         pass
 
     def upgrade_weapon(self):
-        pass
-        # self list weapons, select next
+        try:
+            self.weapon = self.weapon_selector.next()
+        except StopIteration:
+            pass  # you already have the biggest gun
+
+    def get_next_weapon(self):
+        for weapon in self.weapons:
+            yield weapon
 
 
 class BattleshipOne(Battleship):
@@ -52,5 +62,5 @@ class BattleshipOne(Battleship):
             x_step=6,
             y_step=6,
             starting_image='/04.png',
-            weapon=BattleshipWeaponOne()
+            weapon=[BattleshipWeaponOne(), BattleshipWeaponTwo()]
         )

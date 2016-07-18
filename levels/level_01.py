@@ -5,6 +5,7 @@ from sprites.battleship import BattleshipOne
 from sprites.background import BackgroundOne
 from sprites.enemies.enemy import EnemySetOne, EnemySetTwo
 from sprites.enemies.mothership import MothershipOne
+from sprites.power_ups import UpgradeBattleshipWeapon
 
 
 class Level01(Level):
@@ -35,6 +36,9 @@ class Level01(Level):
 
     def run(self):
         time.sleep(1)
+
+        # upgrade gun
+        self.interactive_sprites.add(UpgradeBattleshipWeapon())
 
         # asteroid belt
         asteroid_belt_one = AsteroidBeltOne(how_many=15)

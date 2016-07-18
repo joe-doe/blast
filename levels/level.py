@@ -17,6 +17,7 @@ class Level(Scene):
     explosions = None
     battleship = None
 
+    interactive_sprites = None
     non_interactive_sprites = None
     non_sprites = None
 
@@ -36,6 +37,7 @@ class Level(Scene):
         self.friend_sprites.update()
         self.friend_bullets.update()
 
+        self.interactive_sprites.update()
         self.non_interactive_sprites.update()
         # [non_sprite.update() for non_sprite in self.non_sprites]
 
@@ -50,6 +52,7 @@ class Level(Scene):
         self.friend_sprites.draw(screen)
         self.friend_bullets.draw(screen)
 
+        self.interactive_sprites.draw(screen)
         self.non_interactive_sprites.draw(screen)
         [non_sprite.draw(screen) for non_sprite in self.non_sprites]
 
@@ -62,6 +65,7 @@ class Level(Scene):
         self.friend_sprites = pygame.sprite.Group()
         self.friend_bullets = pygame.sprite.Group()
 
+        self.interactive_sprites = pygame.sprite.Group()
         self.non_interactive_sprites = pygame.sprite.Group()
         self.non_sprites = []
 
@@ -131,6 +135,16 @@ class Level(Scene):
                 battleship = sprite
 
         if battleship:
+            # upgrades
+            collided_sprite = pygame.sprite.spritecollideany(
+                battleship,
+                self.interactive_sprites
+            )
+
+            if collided_sprite:
+                self.interactive_sprites.remove(collided_sprite)
+                collided_sprite.enable_powerup(battleship)
+
             # enemy sprite hit battleship
             collided_sprite = pygame.sprite.spritecollideany(battleship,
                                                              self.enemy_sprites)
