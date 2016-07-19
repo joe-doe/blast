@@ -33,6 +33,7 @@ class Level01(Level):
 
     def run(self):
         self.load_next_scene = True
+        return
 
         time.sleep(1)
 

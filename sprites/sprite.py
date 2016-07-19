@@ -79,4 +79,5 @@ class Sprite(pygame.sprite.Sprite):
                 or self.rect.x >= WINDOW_WIDTH + 1 \
                 or self.rect.y <= - self.rect.h - 1\
                 or self.rect.y >= WINDOW_HEIGHT + self.rect.h + 1:
+            print "out:{}".format(self)
             self.sprite_data.out_of_bounds = True

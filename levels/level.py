@@ -111,6 +111,14 @@ class Level(Scene):
             if sprite.sprite_data.out_of_bounds is True:
                 self.friend_bullets.remove(sprite)
 
+        for sprite in self.non_interactive_sprites:
+            if sprite.sprite_data.out_of_bounds is True:
+                self.non_interactive_sprites.remove(sprite)
+
+        for sprite in self.interactive_sprites:
+            if sprite.sprite_data.out_of_bounds is True:
+                self.interactive_sprites.remove(sprite)
+
         # battleship bullet
         # keeps killing even if battleship is in resurrection mode
         for bullet in self.friend_bullets:
@@ -186,6 +194,10 @@ class Level(Scene):
         # grace period ended
         self.friend_sprites.add(self.battleship)
 
-    def wait_until_no_enemies_on_stage(self, interval=2):
+    def wait_until_no_enemies_on_stage(self, interval=1):
+        print "mphka"
         while self.enemy_sprites.sprites():
+            print "wait: {} enemies are around".format(
+                len(self.enemy_sprites.sprites())
+            )
             time.sleep(interval)

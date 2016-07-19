@@ -70,10 +70,12 @@ class EnemySet(object):
     enemy_set = None
     how_many = 0
     enemy_data = None
+    movement_threads = None
 
     def __init__(self, how_many, enemy_bullets):
         super(EnemySet, self).__init__()
 
+        self.movement_threads = []
         self.enemy_set = []
         self.enemy_bullets = enemy_bullets
         self.how_many = how_many
@@ -87,26 +89,29 @@ class EnemySet(object):
 
     def get_enemy_set(self):
         for enemy in self.enemy_set:
-            # time.sleep(0.5)
             yield enemy
 
     def go_right(self, speed=0, sleep_time=1):
-        DaemonThread(target=self.turn_right, args=(speed, )).start()
+        t = DaemonThread(target=self.turn_right, args=(speed, )).start()
+        self.movement_threads.append(t)
         delay = float(sleep_time)/self.how_many*speed
         time.sleep(delay)
 
     def go_left(self, speed=0, sleep_time=1):
-        DaemonThread(target=self.turn_left, args=(speed, )).start()
+        t = DaemonThread(target=self.turn_left, args=(speed, )).start()
+        self.movement_threads.append(t)
         delay = float(sleep_time)/self.how_many*speed
         time.sleep(delay)
 
     def go_down(self, speed=0, sleep_time=1):
-        DaemonThread(target=self.speed_up, args=(speed, )).start()
+        t = DaemonThread(target=self.speed_up, args=(speed, )).start()
+        self.movement_threads.append(t)
         delay = float(sleep_time)/self.how_many*speed
         time.sleep(delay)
 
     def go_up(self, speed=0, sleep_time=1):
-        DaemonThread(target=self.slow_down, args=(speed, )).start()
+        t = DaemonThread(target=self.slow_down, args=(speed, )).start()
+        self.movement_threads.append(t)
         delay = float(sleep_time)/self.how_many*speed
         time.sleep(delay)
 
@@ -151,10 +156,17 @@ class EnemySetOne(EnemySet):
             for i in range(self.how_many):
                 self.enemy_set.append(EnemyOne(self.enemy_bullets))
 
+        # def start_movement(self):
+        #     self.go_down(speed=4, sleep_time=3)
+        #     self.go_right(speed=7, sleep_time=5)
+        #     self.go_left(speed=7, sleep_time=2)
         def start_movement(self):
-            self.go_down(speed=4, sleep_time=3)
-            self.go_right(speed=7, sleep_time=5)
-            self.go_left(speed=7, sleep_time=2)
+            self.speed_up(speed=4)
+            time.sleep(3)
+            self.turn_right(speed=7)
+            time.sleep(5)
+            self.turn_left(speed=7)
+            time.sleep(2)
 
 
 class EnemySetTwo(EnemySet):
@@ -165,14 +177,23 @@ class EnemySetTwo(EnemySet):
             for i in range(self.how_many):
                 self.enemy_set.append(EnemyTwo(self.enemy_bullets))
 
+        # def start_movement(self):
+        #     self.go_down(speed=4, sleep_time=0)
+        #     self.go_left(speed=3, sleep_time=25)
+        #
+        #     self.go_up(speed=4, sleep_time=5)
+        #     self.go_up(speed=4, sleep_time=5)
+        #     self.go_right(speed=3, sleep_time=5)
+        #     self.go_right(speed=3, sleep_time=5)
+        #
+        #     self.go_down(speed=3, sleep_time=5)
+        #     self.go_right(speed=3, sleep_time=5)
+        #
+
         def start_movement(self):
-            self.go_down(speed=4, sleep_time=0)
-            self.go_left(speed=3, sleep_time=25)
-
-            self.go_up(speed=4, sleep_time=5)
-            self.go_up(speed=4, sleep_time=5)
-            self.go_right(speed=3, sleep_time=5)
-            self.go_right(speed=3, sleep_time=5)
-
-            self.go_down(speed=3, sleep_time=5)
-            self.go_right(speed=3, sleep_time=5)
+            self.speed_up(speed=4)
+            time.sleep(3)
+            self.turn_right(speed=7)
+            time.sleep(5)
+            self.turn_left(speed=7)
+            time.sleep(2)

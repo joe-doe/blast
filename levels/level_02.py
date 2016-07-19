@@ -35,7 +35,7 @@ class Level02(Level):
         time.sleep(1)
 
         cp1 = time.time() - start
-        print "passed: {}".format(cp1)
+        print "0 passed: {}".format(cp1)
         # level label
         label = LevelLabel(2)
         self.non_interactive_sprites.add(label)
@@ -43,14 +43,14 @@ class Level02(Level):
         self.non_interactive_sprites.remove(label)
 
         cp1 = time.time() - start
-        print "passed: {}".format(cp1)
+        print "1 passed: {}".format(cp1)
         # enemy set one
         enemy_set_one = EnemySetOne(how_many=4)
         self.enemy_sprites.add(enemy_set_one.get_enemy_set())
         enemy_set_one.start_movement()
 
         cp1 = time.time() - start
-        print "passed: {}".format(cp1)
+        print "2 passed: {}".format(cp1)
         # shields upgrade
         self.interactive_sprites.add(ShieldsOn())
 
@@ -58,13 +58,13 @@ class Level02(Level):
         self.wait_until_no_enemies_on_stage()
 
         cp1 = time.time() - start
-        print "passed: {}".format(cp1)
+        print "3 passed: {}".format(cp1)
         # asteroid belt
         asteroid_belt_one = AsteroidBeltOne(how_many=5)
         self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
 
         cp1 = time.time() - start
-        print "passed: {}".format(cp1)
+        print "4 passed: {}".format(cp1)
         # just rest for a bit
         # time.sleep(1)
 
@@ -75,7 +75,7 @@ class Level02(Level):
         enemy_set_two.start_movement()
 
         cp1 = time.time() - start
-        print "passed: {}".format(cp1)
+        print "5 passed: {}".format(cp1)
         # wait until stage cleared
         self.wait_until_no_enemies_on_stage()
 
@@ -83,7 +83,7 @@ class Level02(Level):
         self.interactive_sprites.add(ShieldsOn())
 
         cp1 = time.time() - start
-        print "passed: {}".format(cp1)
+        print "6 passed: {}".format(cp1)
         # asteroid belt
         asteroid_belt_one = AsteroidBeltOne(how_many=5)
         self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
@@ -92,7 +92,7 @@ class Level02(Level):
         self.wait_until_no_enemies_on_stage()
 
         cp1 = time.time() - start
-        print "passed: {}".format(cp1)
+        print "7 passed: {}".format(cp1)
         # mothership
         mothership_two = MothershipTwo(self.enemy_bullets, self.non_sprites)
         self.enemy_sprites.add(mothership_two)
