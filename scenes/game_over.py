@@ -1,10 +1,8 @@
 import time
 from scenes.scene import Scene
-from sprites.background import Background
+from sprites.background import BackgroundOne
 from constants import *
 import pygame
-
-from sprites.sprite_data import SpriteData
 
 
 class GameOver(Scene):
@@ -13,11 +11,7 @@ class GameOver(Scene):
         print "GAME OVER"
 
     def initialize_background(self):
-        background_data = SpriteData(
-            image_path='resources/L1_background_800x600.png',
-            y_step=1
-        )
-        self.extra_sprites.add(Background(background_data))
+        self.extra_sprites.add(BackgroundOne())
 
     def initialize_sprites(self):
         pass

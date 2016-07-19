@@ -1,4 +1,7 @@
-from sprites.bullet import EnemyWeaponOne
+from sprites.bullet import (
+    EnemyWeaponOne,
+    EnemyWeaponTwo
+)
 from sprites.sprite import Sprite
 from sprites.sprite_data import SpriteData
 from random import randint
@@ -51,4 +54,17 @@ class MothershipOne(Mothership):
             should_fire=True,
             health=15,
             weapon=EnemyWeaponOne()
+        )
+
+
+class MothershipTwo(Mothership):
+    def feed_data(self):
+        self.sprite_data = SpriteData(
+            image_path='resources/enemies/mothership_two.png',
+            x_step=2,
+            y_step=2,
+            y_start=-250,
+            should_fire=True,
+            health=15,
+            weapon=EnemyWeaponTwo()
         )

@@ -32,9 +32,11 @@ class Level01(Level):
         self.friend_sprites.add(self.battleship)
 
     def run(self):
+        self.load_next_scene = True
+
         time.sleep(1)
 
-        # level completed
+        # level label
         label = LevelLabel(1)
         self.non_interactive_sprites.add(label)
         time.sleep(2)

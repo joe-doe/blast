@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d223d544-b43c-49af-834f-0719f6768840" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/enemies/fighter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/spaceship/enemy_bullet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/spaceship/enemy_bullet_big.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/levels/level.py" afterPath="$PROJECT_DIR$/levels/level.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/levels/level_01.py" afterPath="$PROJECT_DIR$/levels/level_01.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sprites/battleship.py" afterPath="$PROJECT_DIR$/sprites/battleship.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sprites/bullet.py" afterPath="$PROJECT_DIR$/sprites/bullet.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/levels/level_02.py" afterPath="$PROJECT_DIR$/levels/level_02.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenes/credits.py" afterPath="$PROJECT_DIR$/scenes/credits.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenes/game_over.py" afterPath="$PROJECT_DIR$/scenes/game_over.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sprites/enemies/mothership.py" afterPath="$PROJECT_DIR$/sprites/enemies/mothership.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sprites/label.py" afterPath="$PROJECT_DIR$/sprites/label.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sprites/power_ups.py" afterPath="$PROJECT_DIR$/sprites/power_ups.py" />
     </list>
     <ignored path="pyg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,11 +52,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="level.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="level.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/levels/level.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+                <state relative-caret-position="516">
+                  <caret line="188" column="8" selection-start-line="188" selection-start-column="8" selection-end-line="188" selection-end-column="8" />
                   <folding>
                     <element signature="e#0#16#0" expanded="true" />
                   </folding>
@@ -70,8 +67,8 @@
           <file leaf-file-name="label.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sprites/label.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="494">
-                  <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+                <state relative-caret-position="266">
+                  <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#33#0" expanded="true" />
                   </folding>
@@ -91,12 +88,38 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="level_02.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="level_02.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/levels/level_02.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="494">
+                  <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
+                  <folding>
+                    <element signature="e#0#11#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="credits.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scenes/credits.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#11#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="game_over.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scenes/game_over.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#11#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -132,11 +155,9 @@
           <file leaf-file-name="mothership.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sprites/enemies/mothership.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="386">
-                  <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
-                  <folding>
-                    <element signature="e#0#41#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="-622">
+                  <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -144,8 +165,8 @@
           <file leaf-file-name="level_01.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/levels/level_01.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="522">
-                  <caret line="78" column="45" selection-start-line="42" selection-start-column="1" selection-end-line="78" selection-end-column="45" />
+                <state relative-caret-position="-568">
+                  <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
                   </folding>
@@ -228,8 +249,6 @@
         <option value="$PROJECT_DIR$/constants.py" />
         <option value="$PROJECT_DIR$/sprites/asteroids/asteroid_alpha.py" />
         <option value="$PROJECT_DIR$/sprites/explosions/explosion_one.py" />
-        <option value="$PROJECT_DIR$/scenes/credits.py" />
-        <option value="$PROJECT_DIR$/scenes/game_over.py" />
         <option value="$PROJECT_DIR$/game_data.py" />
         <option value="$PROJECT_DIR$/non_sprite.py" />
         <option value="$PROJECT_DIR$/non_sprite/non_sprite.py" />
@@ -241,10 +260,8 @@
         <option value="$PROJECT_DIR$/sprites/asteroids/asteroid.py" />
         <option value="$PROJECT_DIR$/sprites/explosions/explosion.py" />
         <option value="$PROJECT_DIR$/sprites/weapon.py" />
-        <option value="$PROJECT_DIR$/sprites/enemies/mothership.py" />
         <option value="$PROJECT_DIR$/sprites/enemies/enemy.py" />
         <option value="$PROJECT_DIR$/scenes/intro.py" />
-        <option value="$PROJECT_DIR$/levels/level_02.py" />
         <option value="$PROJECT_DIR$/sprites/animated_sprite.py" />
         <option value="$PROJECT_DIR$/sprites/sprite_data.py" />
         <option value="$PROJECT_DIR$/sprites/sprite.py" />
@@ -252,11 +269,15 @@
         <option value="$PROJECT_DIR$/scenes/scene.py" />
         <option value="$PROJECT_DIR$/sprites/generic.py" />
         <option value="$PROJECT_DIR$/sprites/bullet.py" />
-        <option value="$PROJECT_DIR$/sprites/label.py" />
         <option value="$PROJECT_DIR$/sprites/power_ups.py" />
         <option value="$PROJECT_DIR$/sprites/battleship.py" />
         <option value="$PROJECT_DIR$/levels/level.py" />
+        <option value="$PROJECT_DIR$/sprites/enemies/mothership.py" />
+        <option value="$PROJECT_DIR$/sprites/label.py" />
         <option value="$PROJECT_DIR$/levels/level_01.py" />
+        <option value="$PROJECT_DIR$/scenes/game_over.py" />
+        <option value="$PROJECT_DIR$/scenes/credits.py" />
+        <option value="$PROJECT_DIR$/levels/level_02.py" />
       </list>
     </option>
   </component>
@@ -675,7 +696,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/scenes/credits.py</url>
-          <line>37</line>
+          <line>31</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
       </breakpoints>
@@ -738,13 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scenes/game_over.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -848,14 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/levels/level_02.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python2.7/posixpath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -887,14 +893,6 @@
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scenes/credits.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -938,32 +936,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sprites/label.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sprites/enemies/enemy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="118" column="27" selection-start-line="118" selection-start-column="27" selection-end-line="118" selection-end-column="27" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sprites/enemies/mothership.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -988,10 +966,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sprites/enemies/mothership.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-622">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sprites/label.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/levels/level.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        <state relative-caret-position="516">
+          <caret line="188" column="8" selection-start-line="188" selection-start-column="8" selection-end-line="188" selection-end-column="8" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
@@ -1000,8 +996,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/levels/level_01.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="78" column="45" selection-start-line="42" selection-start-column="1" selection-end-line="78" selection-end-column="45" />
+        <state relative-caret-position="-568">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scenes/game_over.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scenes/credits.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/levels/level_02.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

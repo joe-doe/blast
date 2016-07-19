@@ -50,11 +50,11 @@ class LevelCompleted(LabelSprite):
 
 class LevelLabel(LabelSprite):
 
-    level_number = 1
+    level_number = 0
 
     def __init__(self, level_number):
-        super(LevelLabel, self).__init__()
         self.level_number = level_number
+        super(LevelLabel, self).__init__()
 
     def initialize_sprite(self):
         super(LevelLabel, self).initialize_sprite()
