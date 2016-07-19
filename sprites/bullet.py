@@ -37,7 +37,7 @@ class EnemyBulletOne(Bullet):
 
     def feed_data(self):
         self.sprite_data = SpriteData(
-            image_path='resources/spaceship/enemy_bullet.png',
+            image_path='resources/enemies/enemy_bullet.png',
             x_step=0,
             y_step=8,
             pos_relative_to=self.igniter.rect
@@ -48,7 +48,7 @@ class EnemyBulletTwo(Bullet):
 
     def feed_data(self):
         self.sprite_data = SpriteData(
-            image_path='resources/spaceship/enemy_bullet.png',
+            image_path='resources/enemies/enemy_bullet_big.png',
             x_step=0,
             y_step=8,
             pos_relative_to=self.igniter.rect

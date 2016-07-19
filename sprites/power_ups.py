@@ -55,5 +55,5 @@ class ShieldsOn(PowerUp):
             y_step=2
         )
 
-    def enable_powerup(self, battleship, non_interactive_sprites):
-        battleship.set_shields_on(non_interactive_sprites)
+    def enable_powerup(self, battleship):
+        battleship.set_shields_on()

@@ -140,16 +140,13 @@ class Level(Scene):
 
             if collided_sprite:
                 self.interactive_sprites.remove(collided_sprite)
-                collided_sprite.enable_powerup(
-                    battleship=battleship,
-                    non_interactive_sprites=self.non_interactive_sprites
-                )
+                collided_sprite.enable_powerup(battleship)
 
             # enemy sprite hit battleship
             collided_sprite = pygame.sprite.spritecollideany(battleship,
                                                              self.enemy_sprites)
             if collided_sprite:
-                if not battleship.shields_on:
+                if not battleship.shields_on_flag:
                     self.lost_a_life()
                 self.enemy_sprites.remove(collided_sprite)
                 self.explosions.add(ExplosionOne(collided_sprite))
@@ -158,7 +155,7 @@ class Level(Scene):
             collided_bullet = pygame.sprite.spritecollideany(battleship,
                                                              self.enemy_bullets)
             if collided_bullet:
-                if not battleship.shields_on:
+                if not battleship.shields_on_flag:
                     self.lost_a_life()
                 self.enemy_bullets.remove(collided_bullet)
                 self.explosions.add(ExplosionOne(collided_bullet))

@@ -9,6 +9,10 @@ from sprites.power_ups import (
     UpgradeBattleshipWeapon,
     ShieldsOn
 )
+from sprites.label import (
+    LevelLabel,
+    LevelCompleted
+)
 
 
 class Level01(Level):
@@ -21,21 +25,27 @@ class Level01(Level):
         self.background.add(BackgroundOne())
 
     def initialize_sprites(self):
-        self.battleship = BattleshipOne(self.friend_bullets)
+        self.battleship = BattleshipOne(
+            self.friend_bullets,
+            self.non_interactive_sprites
+        )
         self.friend_sprites.add(self.battleship)
 
     def run(self):
         time.sleep(1)
 
-        # # upgrade gun
-        # self.interactive_sprites.add(UpgradeBattleshipWeapon())
-
-        # upgrade gun
-        self.interactive_sprites.add(ShieldsOn())
+        # level completed
+        label = LevelLabel(1)
+        self.non_interactive_sprites.add(label)
+        time.sleep(2)
+        self.non_interactive_sprites.remove(label)
 
         # asteroid belt
         asteroid_belt_one = AsteroidBeltOne(how_many=15)
         self.enemy_sprites.add(asteroid_belt_one.get_asteroid_set())
+
+        # shields upgrade
+        self.interactive_sprites.add(ShieldsOn())
 
         # wait until stage cleared
         self.wait_until_no_enemies_on_stage()
@@ -45,6 +55,9 @@ class Level01(Level):
                                     enemy_bullets=self.enemy_bullets)
         self.enemy_sprites.add(enemy_set_one.get_enemy_set())
         enemy_set_one.start_movement()
+
+        # upgrade gun
+        self.interactive_sprites.add(UpgradeBattleshipWeapon())
 
         # wait until stage cleared
         self.wait_until_no_enemies_on_stage()
@@ -65,11 +78,20 @@ class Level01(Level):
         # wait until stage cleared
         self.wait_until_no_enemies_on_stage()
 
+        # shields upgrade
+        self.interactive_sprites.add(ShieldsOn())
+
         # mothership
         mothership_one = MothershipOne(self.enemy_bullets, self.non_sprites)
-        self.enemy_sprites.add(mothership_one.mothership)
+        self.enemy_sprites.add(mothership_one)
 
         # wait until stage cleared
         self.wait_until_no_enemies_on_stage()
+
+        # level completed
+        label = LevelCompleted()
+        self.non_interactive_sprites.add(label)
+        time.sleep(2)
+        self.non_interactive_sprites.remove(label)
 
         self.load_next_scene = True

@@ -8,7 +8,8 @@ from sprites.bullet import (
 )
 from label import (
     ShieldsOnLabel,
-    ShieldsOffLabel
+    ShieldsOffLabel,
+    WeaponUpgradeLabel
 )
 
 import os
@@ -22,15 +23,16 @@ class Battleship(AnimatedControlledSprite):
     weapons = None
     weapon = None
     weapon_selector = None
-    shields_on = False
+    shields_on_flag = False
 
-    def __init__(self, friend_bullets):
+    def __init__(self, friend_bullets, non_interactive_sprites):
         super(Battleship, self).__init__()
 
         self.weapons = self.sprite_data.weapon
         self.weapon_selector = self.get_next_weapon()
         self.weapon = self.weapon_selector.next()
         self.friend_bullets = friend_bullets
+        self.non_interactive_sprites = non_interactive_sprites
 
     def initialize_sprite(self):
         super(Battleship, self).initialize_sprite()
@@ -49,8 +51,15 @@ class Battleship(AnimatedControlledSprite):
 
     # weapons behavior
     def upgrade_weapon(self):
+
         try:
             self.weapon = self.weapon_selector.next()
+
+            # show information label
+            label = WeaponUpgradeLabel()
+            self.non_interactive_sprites.add(label)
+            time.sleep(1)
+            self.non_interactive_sprites.remove(label)
         except StopIteration:
             pass  # you already have the biggest gun
 
@@ -59,16 +68,13 @@ class Battleship(AnimatedControlledSprite):
             yield weapon
 
     # shields behavior
-    def set_shields_on(self, non_interactive_sprites):
-        DaemonThread(
-            target=self.shields_on,
-            args=(non_interactive_sprites, )
-        ).start()
+    def set_shields_on(self):
+        DaemonThread(target=self.shields_on).start()
 
-    def shields_on(self, non_interactive_sprites):
+    def shields_on(self):
 
         # set shields on flag true
-        self.shields_on = True
+        self.shields_on_flag = True
 
         # update image set
         path = os.path.join(
@@ -83,18 +89,18 @@ class Battleship(AnimatedControlledSprite):
 
         # show information label
         label = ShieldsOnLabel()
-        non_interactive_sprites.add(label)
+        self.non_interactive_sprites.add(label)
         time.sleep(1)
-        non_interactive_sprites.remove(label)
+        self.non_interactive_sprites.remove(label)
 
         time.sleep(6)
 
         # show information label
         # and wait for 1 sec
         label = ShieldsOffLabel()
-        non_interactive_sprites.add(label)
+        self.non_interactive_sprites.add(label)
         time.sleep(1)
-        non_interactive_sprites.remove(label)
+        self.non_interactive_sprites.remove(label)
 
         # update image set
         path = os.path.join(
@@ -108,7 +114,7 @@ class Battleship(AnimatedControlledSprite):
         self.reload_current_image(self.sprite_data.image_path)
 
         # set shields on flag false
-        self.shields_on = False
+        self.shields_on_flag = False
 
 
 class BattleshipOne(Battleship):
