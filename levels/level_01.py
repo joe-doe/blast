@@ -5,7 +5,10 @@ from sprites.battleship import BattleshipOne
 from sprites.background import BackgroundOne
 from sprites.enemies.enemy import EnemySetOne, EnemySetTwo
 from sprites.enemies.mothership import MothershipOne
-from sprites.power_ups import UpgradeBattleshipWeapon
+from sprites.power_ups import (
+    UpgradeBattleshipWeapon,
+    ShieldsOn
+)
 
 
 class Level01(Level):
@@ -21,24 +24,14 @@ class Level01(Level):
         self.battleship = BattleshipOne(self.friend_bullets)
         self.friend_sprites.add(self.battleship)
 
-    def resurrect_battleship(self):
-        time.sleep(.7)
-
-        # grace period upon resurrection
-        for i in range(8):
-            self.non_interactive_sprites.add(self.battleship)
-            time.sleep(.2)
-            self.non_interactive_sprites.empty()
-            time.sleep(.2)
-
-        # grace period ended
-        self.friend_sprites.add(self.battleship)
-
     def run(self):
         time.sleep(1)
 
+        # # upgrade gun
+        # self.interactive_sprites.add(UpgradeBattleshipWeapon())
+
         # upgrade gun
-        self.interactive_sprites.add(UpgradeBattleshipWeapon())
+        self.interactive_sprites.add(ShieldsOn())
 
         # asteroid belt
         asteroid_belt_one = AsteroidBeltOne(how_many=15)

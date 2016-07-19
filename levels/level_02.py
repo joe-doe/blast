@@ -18,19 +18,6 @@ class Level02(Level):
         self.battleship = BattleshipOne(self.friend_bullets)
         self.friend_sprites.add(self.battleship)
 
-    def resurrect_battleship(self):
-        time.sleep(.7)
-
-        # grace period upon resurrection
-        for i in range(8):
-            self.non_interactive_sprites.add(self.battleship)
-            time.sleep(.2)
-            self.non_interactive_sprites.empty()
-            time.sleep(.2)
-
-        # grace period ended
-        self.friend_sprites.add(self.battleship)
-
     def run(self):
         time.sleep(1)
 

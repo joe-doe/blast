@@ -41,3 +41,19 @@ class UpgradeBattleshipWeapon(PowerUp):
 
     def enable_powerup(self, battleship):
         battleship.upgrade_weapon()
+
+
+class ShieldsOn(PowerUp):
+
+    def feed_data(self):
+
+        self.sprite_data = AnimatedSpriteData(
+            image_set_folder=os.path.join(
+                sys.path[0],
+                'resources/powerups/Green/'),
+            loop_forever=True,
+            y_step=2
+        )
+
+    def enable_powerup(self, battleship, non_interactive_sprites):
+        battleship.set_shields_on(non_interactive_sprites)

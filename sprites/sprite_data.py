@@ -1,6 +1,7 @@
 from os import listdir
 from os.path import isfile, join
 import pygame
+from threading import Lock
 
 
 class SpriteData(object):
@@ -65,6 +66,9 @@ class AnimatedSpriteData(SpriteData):
     image_set_length = 0
     image_set_folder = None
     loop_forever = False
+    starting_image_idx = 0
+
+    reload_lock = None
 
     def __init__(self,
                  image_set_folder=None,
@@ -79,7 +83,7 @@ class AnimatedSpriteData(SpriteData):
                  should_fire=False,
                  health=1,
                  weapon=None,
-                 starting_image='/01.png'):
+                 starting_image='01'):
         super(AnimatedSpriteData, self).__init__(
             image_path=None,
             x_start=x_start,
@@ -94,11 +98,10 @@ class AnimatedSpriteData(SpriteData):
             weapon=weapon
         )
 
-        self.image_set_folder = image_set_folder
-        self.image_path = self.image_set_folder+starting_image
-        self.image_set = self.load_image_set()
-        self.image_set_length = len(self.image_set)
-        self.loop_forever = loop_forever
+        self.get_image_lock = Lock()
+        self.reload_lock = Lock()
+
+        self.reload_image_set(image_set_folder, starting_image, loop_forever)
 
     def load_image_set(self):
         image_set = []
@@ -109,14 +112,24 @@ class AnimatedSpriteData(SpriteData):
         for img in image_files:
             image = join(self.image_set_folder, img)
             image_set.append(pygame.image.load(image).convert_alpha())
+
         return image_set
 
-    def set_image_set(self, image_set):
-        self.image_set = image_set
-        self.image_set_length = len(image_set)
+    def get_image_from_set(self, idx):
+        with self.get_image_lock:
+            return self.image_set[idx]
 
-    def set_image_set_folder(self, image_set_folder):
-        self.image_set_folder = image_set_folder
+    def get_starting_image_idx(self):
+        return self.starting_image_idx
 
-    def set_loop_forever(self, loop_forever):
-        self.loop_forever = loop_forever
+    def reload_image_set(self, image_set_folder, starting_image, loop_forever):
+        with self.reload_lock:
+            self.starting_image_idx = int(starting_image)
+            self.image_set_folder = image_set_folder
+            self.image_path = self.image_set_folder\
+                + '/'\
+                + str(starting_image)\
+                + '.png'
+            self.image_set = self.load_image_set()
+            self.image_set_length = len(self.image_set)
+            self.loop_forever = loop_forever

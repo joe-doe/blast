@@ -1,6 +1,5 @@
 import threading
 import pygame
-
 from constants import *
 
 

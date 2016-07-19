@@ -15,6 +15,16 @@ class Sprite(pygame.sprite.Sprite):
     def feed_data(self):
         pass
 
+    def reload_current_image(self, image_path):
+
+        self.image = pygame.image.load(image_path).convert_alpha()
+        old_rect = self.rect
+        self.rect = self.image.get_rect()
+        self.rect.x = old_rect.x
+        self.rect.y = old_rect.y
+        self.rect.centerx = old_rect.centerx
+        self.rect.centery = old_rect.centery
+
     def initialize_sprite(self):
 
         self.image = pygame.image.load(self.sprite_data.image_path).convert_alpha()

@@ -1,13 +1,19 @@
 from constants import *
+from daemon_thread import DaemonThread
 from sprites.animated_sprite import AnimatedControlledSprite
 from sprites.sprite_data import AnimatedSpriteData
 from sprites.bullet import (
     BattleshipWeaponOne,
     BattleshipWeaponTwo
 )
+from label import (
+    ShieldsOnLabel,
+    ShieldsOffLabel
+)
 
 import os
 import sys
+import time
 
 
 class Battleship(AnimatedControlledSprite):
@@ -16,6 +22,7 @@ class Battleship(AnimatedControlledSprite):
     weapons = None
     weapon = None
     weapon_selector = None
+    shields_on = False
 
     def __init__(self, friend_bullets):
         super(Battleship, self).__init__()
@@ -40,6 +47,7 @@ class Battleship(AnimatedControlledSprite):
         #     self.sprite_data.y_step = 0
         pass
 
+    # weapons behavior
     def upgrade_weapon(self):
         try:
             self.weapon = self.weapon_selector.next()
@@ -49,6 +57,58 @@ class Battleship(AnimatedControlledSprite):
     def get_next_weapon(self):
         for weapon in self.weapons:
             yield weapon
+
+    # shields behavior
+    def set_shields_on(self, non_interactive_sprites):
+        DaemonThread(
+            target=self.shields_on,
+            args=(non_interactive_sprites, )
+        ).start()
+
+    def shields_on(self, non_interactive_sprites):
+
+        # set shields on flag true
+        self.shields_on = True
+
+        # update image set
+        path = os.path.join(
+                sys.path[0],
+                'resources/spaceship/spaceship_shielded'
+            )
+        starting_image = '04'
+        loop_forever = True
+
+        self.sprite_data.reload_image_set(path, starting_image, loop_forever)
+        self.reload_current_image(self.sprite_data.image_path)
+
+        # show information label
+        label = ShieldsOnLabel()
+        non_interactive_sprites.add(label)
+        time.sleep(1)
+        non_interactive_sprites.remove(label)
+
+        time.sleep(6)
+
+        # show information label
+        # and wait for 1 sec
+        label = ShieldsOffLabel()
+        non_interactive_sprites.add(label)
+        time.sleep(1)
+        non_interactive_sprites.remove(label)
+
+        # update image set
+        path = os.path.join(
+            sys.path[0],
+            'resources/spaceship/spaceship'
+        )
+        starting_image = '04'
+        loop_forever = True
+
+        self.sprite_data.reload_image_set(path, starting_image, loop_forever)
+        self.reload_current_image(self.sprite_data.image_path)
+
+        # set shields on flag false
+        self.shields_on = False
 
 
 class BattleshipOne(Battleship):
@@ -61,6 +121,6 @@ class BattleshipOne(Battleship):
             ),
             x_step=6,
             y_step=6,
-            starting_image='/04.png',
+            starting_image='03',
             weapon=[BattleshipWeaponOne(), BattleshipWeaponTwo()]
         )

@@ -77,9 +77,6 @@ class Level(Scene):
     def initialize_sprites(self):
         pass
 
-    def resurrect_battleship(self):
-        pass
-
     def get_battleship(self):
         return self.battleship
 
@@ -143,13 +140,17 @@ class Level(Scene):
 
             if collided_sprite:
                 self.interactive_sprites.remove(collided_sprite)
-                collided_sprite.enable_powerup(battleship)
+                collided_sprite.enable_powerup(
+                    battleship=battleship,
+                    non_interactive_sprites=self.non_interactive_sprites
+                )
 
             # enemy sprite hit battleship
             collided_sprite = pygame.sprite.spritecollideany(battleship,
                                                              self.enemy_sprites)
             if collided_sprite:
-                self.lost_a_life()
+                if not battleship.shields_on:
+                    self.lost_a_life()
                 self.enemy_sprites.remove(collided_sprite)
                 self.explosions.add(ExplosionOne(collided_sprite))
 
@@ -157,7 +158,8 @@ class Level(Scene):
             collided_bullet = pygame.sprite.spritecollideany(battleship,
                                                              self.enemy_bullets)
             if collided_bullet:
-                self.lost_a_life()
+                if not battleship.shields_on:
+                    self.lost_a_life()
                 self.enemy_bullets.remove(collided_bullet)
                 self.explosions.add(ExplosionOne(collided_bullet))
 
@@ -169,7 +171,23 @@ class Level(Scene):
         if self.game_data.lives.get_lives() < 0:
             self.game_over = True
         else:
-            DaemonThread(target=self.resurrect_battleship).start()
+            DaemonThread(
+                target=self.make_battleship_invisible,
+                args=(.7, 8)
+            ).start()
+
+    def make_battleship_invisible(self, initial_delay=0, delay=0):
+        time.sleep(initial_delay)
+
+        # grace period upon resurrection
+        for i in range(delay):
+            self.non_interactive_sprites.add(self.battleship)
+            time.sleep(.2)
+            self.non_interactive_sprites.empty()
+            time.sleep(.2)
+
+        # grace period ended
+        self.friend_sprites.add(self.battleship)
 
     def wait_until_no_enemies_on_stage(self, interval=2):
         while self.enemy_sprites.sprites():
